@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace PocGDP
 {
-    public class Cuadrado : Figura
-    {
-        float x, y;
-        float ancho, alto;
-        public Cuadrado(float x, float y, float ancho, float alto)
+    public class Cuadrado: Figura
+    {   
+
+        public Cuadrado(Punto punto1, Punto punto2)
         {
-            Nombre = this.GetType().ToString();
-            this.x = x;
-            this.y = y;
-            this.ancho = ancho;
-            this.alto = alto;
+            this.punto1 = punto1;
+            this.punto2 = punto2;
+        }
+        public Cuadrado()
+        {
+
         }
 
-        public override void Dibujar()
+        public override void Dibujar(Form f1)
         {
-            throw new NotImplementedException();
+            Graphics grp = f1.CreateGraphics();
+            grp.DrawRectangle(new Pen(Color.Red, 2), this.punto1.X, this.punto1.Y,this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
         }
     }
 }

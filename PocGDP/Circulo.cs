@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace PocGDP
 {
     public class Circulo :  Figura
     {
-        public Circulo(Color colortrazo, float anchotrazo)
+        public Circulo(Punto punto1, Punto punto2)
         {
-            Nombre = this.GetType().ToString();
-            Colortrazo = colortrazo;
-            AnchoTrazo = anchotrazo;
+            this.punto1 = punto1;
+            this.punto2 = punto2;
+        }
+        public Circulo()
+        {
+
+        }
+        public override void Dibujar(Form f1)
+        {
+            Graphics grp = f1.CreateGraphics();
+            grp.DrawEllipse(new Pen(Color.Red, 2), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
         }
     }
 }

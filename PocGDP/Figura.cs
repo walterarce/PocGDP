@@ -1,10 +1,31 @@
 ﻿using System.Drawing;
-
+using System.Windows.Forms;
 namespace PocGDP
 {
     public abstract class Figura
     {
-        
+        public Punto punto1 { get; set; }
+        public Punto punto2 { get; set; }
+
+        private int ancho;
+
+        public int Ancho
+        {
+            get { return ancho; }
+            set { ancho = value; }
+        }
+
+
+        private int alto;
+
+        public int Alto
+        {
+            get { return alto; }
+            set { alto = value; }
+        }
+
+
+
         private string nombre;
 
         public string Nombre
@@ -43,7 +64,9 @@ namespace PocGDP
             set { brocha = value; }
         }
 
-        public abstract void Dibujar();
+
+
+        public abstract void Dibujar(Form f1 , int alto, int ancho);
 
     }
 }

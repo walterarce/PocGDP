@@ -11,12 +11,14 @@ namespace PocGDP
         Point inicial = new Point();
         Object Elemento = null;
         List<Linea> Dibujo = new List<Linea>();
-        List<Circulo> DibujoCirculo = new List<Circulo>();
+        List<Cuadrado> cuadrados = new List<Cuadrado>();
+        List<Circulo> circulos = new List<Circulo>();
         Linea ln = null;
         Color ColorLinea =Color.Red;
         float AnchoLinea = 1;
         Graphics grp = null;
-       
+        private string estado = "normal";
+        private Punto p1_actual;
         public CanvasPrincipal()
         {
             InitializeComponent();
@@ -25,10 +27,9 @@ namespace PocGDP
         private void Form1_Load(object sender, EventArgs e)
         {
             ColorSeleccionado.BackColor = ColorLinea;
+           
         }
       
-
-
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
@@ -61,49 +62,6 @@ namespace PocGDP
             btnRestaurar.Visible = false;
         }
 
-      
-
-        private void panelContenedor_MouseDown(object sender, MouseEventArgs e)
-        {
-            inicial = e.Location;
-            ln = new Linea();
-        }
-
-   
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (Elemento is Linea)
-            {
-                inicial = e.Location;
-                ln = new Linea();
-            }
-            
-        }
-
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
-        {
-            toolStripStatusLabel1.Text = e.Location.ToString();
-            if (e.Button == MouseButtons.Left)
-            {
-                grp = CanvasPrincipal.ActiveForm.CreateGraphics();
-
-                if (Elemento is Linea)
-                {
-                    grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
-                    ln.AgregarPunto(e.Location);
-                    Dibujo.Add(ln);
-                }
-                if (Elemento is Circulo)
-                {
-                    Size mysize = new Size(e.Location.X,e.Location.Y);
-                    Rectangle myRectangle = new Rectangle(e.Location, mysize);
-                    grp.DrawEllipse(new Pen(ColorLinea, AnchoLinea), myRectangle);
-                }
-              
-                inicial = e.Location;
-            }
-        }
 
 
         private void btnPintar_Click(object sender, EventArgs e)
@@ -149,23 +107,86 @@ namespace PocGDP
 
         private void btnCirculo_Click(object sender, EventArgs e)
         {
-            Elemento = new Circulo(ColorSeleccionado.BackColor,AnchoLinea);
+            Elemento = new Circulo();
+        }
+
+
+
+        private void CanvasPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (var cuadrado in cuadrados)
+            {
+                cuadrado.Dibujar(this);
+            }
+        }
+
+        private void CanvasPrincipal_MouseDown(object sender, MouseEventArgs e)
+        {
+            estado = "dibujando";
+            p1_actual = new Punto(e.X,e.Y);
+
+            if (Elemento is Linea)
+            {
+                inicial = e.Location;
+                ln = new Linea();
+            }
+        }
+
+        private void CanvasPrincipal_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (estado=="dibujando")
+            {
+                toolStripStatusLabel1.Text = String.Format($"x:{e.X}, y:{e.Y}");
+                //if (e.Button == MouseButtons.Left)
+                //{
+                //    grp = CanvasPrincipal.ActiveForm.CreateGraphics();
+
+                //    if (Elemento is Linea)
+                //    {
+                //        grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
+                //        ln.AgregarPunto(e.Location);
+                //        Dibujo.Add(ln);
+                //    }
+                //    if (Elemento is Circulo)
+                //    {
+                //        Size mysize = new Size(e.Location.X, e.Location.Y);
+                //        Rectangle myRectangle = new Rectangle(e.Location, mysize);
+                //        grp.DrawEllipse(new Pen(ColorLinea, AnchoLinea), myRectangle);
+                //    }
+
+                //    inicial = e.Location;
+                //}
+            }
+            
+        }
+
+        private void CanvasPrincipal_MouseUp(object sender, MouseEventArgs e)
+        {
+            toolStripStatusLabel1.Text = String.Format($"x:{e.X}, y:{e.Y}");
+            if (Elemento is Cuadrado && estado == "dibujando")
+            {
+                Cuadrado cuadrado = new Cuadrado(p1_actual, new Punto(e.X, e.Y));
+                Graphics gr = this.CreateGraphics();
+               
+                cuadrado.Dibujar(this);
+                cuadrados.Add(cuadrado);
+                estado = "normal";
+            }
+            if (Elemento is Circulo && estado == "dibujando")
+            {
+                Circulo circulo = new Circulo(p1_actual, new Punto(e.X, e.Y));
+                Graphics gr = this.CreateGraphics();
+
+                circulo.Dibujar(this);
+                circulos.Add(circulo);
+                estado = "normal";
+            }
+
         }
 
         private void btnCuadrado_Click(object sender, EventArgs e)
         {
-            Elemento = new Cuadrado();
-        }
-
-
-
-        private void CanvasPrincipal_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (Elemento is Cuadrado)
-            {
-                Rectangle myRectangle = new Rectangle(e.Location.X, e.Location.Y, 20, 20);
-                grp.DrawRectangle(new Pen(ColorLinea, AnchoLinea), myRectangle);
-            }
+            Elemento = new  Cuadrado();
         }
     }
 }
