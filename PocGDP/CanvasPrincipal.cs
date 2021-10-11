@@ -11,8 +11,7 @@ namespace PocGDP
         Point inicial = new Point();
         Object Elemento = null;
         List<Linea> Dibujo = new List<Linea>();
-        List<Cuadrado> cuadrados = new List<Cuadrado>();
-        List<Circulo> circulos = new List<Circulo>();
+        List<Figura> figuras = new List<Figura>();
         Linea ln = null;
         Color ColorLinea =Color.Red;
         float AnchoLinea = 1;
@@ -114,10 +113,11 @@ namespace PocGDP
 
         private void CanvasPrincipal_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var cuadrado in cuadrados)
+            foreach (var figura in figuras)
             {
-                cuadrado.Dibujar(this);
+                figura.Dibujar(this);
             }
+            
         }
 
         private void CanvasPrincipal_MouseDown(object sender, MouseEventArgs e)
@@ -147,14 +147,7 @@ namespace PocGDP
                 //        ln.AgregarPunto(e.Location);
                 //        Dibujo.Add(ln);
                 //    }
-                //    if (Elemento is Circulo)
-                //    {
-                //        Size mysize = new Size(e.Location.X, e.Location.Y);
-                //        Rectangle myRectangle = new Rectangle(e.Location, mysize);
-                //        grp.DrawEllipse(new Pen(ColorLinea, AnchoLinea), myRectangle);
-                //    }
-
-                //    inicial = e.Location;
+ 
                 //}
             }
             
@@ -166,19 +159,15 @@ namespace PocGDP
             if (Elemento is Cuadrado && estado == "dibujando")
             {
                 Cuadrado cuadrado = new Cuadrado(p1_actual, new Punto(e.X, e.Y));
-                Graphics gr = this.CreateGraphics();
-               
                 cuadrado.Dibujar(this);
-                cuadrados.Add(cuadrado);
+                figuras.Add(cuadrado);
                 estado = "normal";
             }
             if (Elemento is Circulo && estado == "dibujando")
             {
                 Circulo circulo = new Circulo(p1_actual, new Punto(e.X, e.Y));
-                Graphics gr = this.CreateGraphics();
-
                 circulo.Dibujar(this);
-                circulos.Add(circulo);
+                figuras.Add(circulo);
                 estado = "normal";
             }
 

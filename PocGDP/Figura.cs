@@ -66,7 +66,7 @@ namespace PocGDP
 
 
 
-        public abstract void Dibujar(Form f1 , int alto, int ancho);
+        public abstract void Dibujar(Form f1);
 
     }
 }
