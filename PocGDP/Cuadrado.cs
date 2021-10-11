@@ -8,9 +8,20 @@ namespace PocGDP
 {
     public class Cuadrado : Figura
     {
-        public Cuadrado()
+        float x, y;
+        float ancho, alto;
+        public Cuadrado(float x, float y, float ancho, float alto)
         {
             Nombre = this.GetType().ToString();
+            this.x = x;
+            this.y = y;
+            this.ancho = ancho;
+            this.alto = alto;
+        }
+
+        public override void Dibujar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -340,6 +340,7 @@ namespace PocGDP
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Canvas";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CanvasPrincipal_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.statusStrip1.ResumeLayout(false);

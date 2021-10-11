@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace PocGDP
 {
     public partial class CanvasPrincipal : Form
     {
         Point inicial = new Point();
+        Object Elemento = null;
         List<Linea> Dibujo = new List<Linea>();
+        List<Circulo> DibujoCirculo = new List<Circulo>();
         Linea ln = null;
         Color ColorLinea =Color.Red;
         float AnchoLinea = 1;
         Graphics grp = null;
-        Object Elemento = null;
+       
         public CanvasPrincipal()
         {
             InitializeComponent();
         }
-        Form3 frm3 = new Form3();
+
         private void Form1_Load(object sender, EventArgs e)
         {
             ColorSeleccionado.BackColor = ColorLinea;
-            this.frm3.Show();
         }
       
 
@@ -90,6 +92,7 @@ namespace PocGDP
                 {
                     grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
                     ln.AgregarPunto(e.Location);
+                    Dibujo.Add(ln);
                 }
                 if (Elemento is Circulo)
                 {
@@ -97,11 +100,7 @@ namespace PocGDP
                     Rectangle myRectangle = new Rectangle(e.Location, mysize);
                     grp.DrawEllipse(new Pen(ColorLinea, AnchoLinea), myRectangle);
                 }
-                if (Elemento is Cuadrado)
-                {
-                    Rectangle myRectangle = new Rectangle(e.Location.X, e.Location.Y, 200, 200);
-                    grp.DrawRectangle(new Pen(ColorLinea, AnchoLinea), myRectangle);
-                }
+              
                 inicial = e.Location;
             }
         }
@@ -159,5 +158,14 @@ namespace PocGDP
         }
 
 
+
+        private void CanvasPrincipal_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (Elemento is Cuadrado)
+            {
+                Rectangle myRectangle = new Rectangle(e.Location.X, e.Location.Y, 20, 20);
+                grp.DrawRectangle(new Pen(ColorLinea, AnchoLinea), myRectangle);
+            }
+        }
     }
 }
