@@ -30,11 +30,6 @@ namespace PocGDP
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CanvasPrincipal));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Linea",
-            "Otro"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Cuadrado");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Circulo");
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -42,13 +37,13 @@ namespace PocGDP
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelSeleccion = new System.Windows.Forms.ToolStripStatusLabel();
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.botonMinimizar = new System.Windows.Forms.PictureBox();
             this.botonMaximizar = new System.Windows.Forms.PictureBox();
             this.botonCerrar = new System.Windows.Forms.PictureBox();
             this.MenuVertical = new System.Windows.Forms.Panel();
-            this.ListaElementos = new System.Windows.Forms.ListView();
             this.ColorSeleccionado = new System.Windows.Forms.Panel();
             this.btnPintar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -62,6 +57,7 @@ namespace PocGDP
             this.btnLinea = new System.Windows.Forms.ToolStripButton();
             this.btnCirculo = new System.Windows.Forms.ToolStripButton();
             this.btnCuadrado = new System.Windows.Forms.ToolStripButton();
+            this.btnSeleccion = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
@@ -82,7 +78,8 @@ namespace PocGDP
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripSplitButton1});
+            this.toolStripSplitButton1,
+            this.labelSeleccion});
             this.statusStrip1.Location = new System.Drawing.Point(0, 628);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1308, 22);
@@ -118,6 +115,12 @@ namespace PocGDP
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem2.Text = "1";
+            // 
+            // labelSeleccion
+            // 
+            this.labelSeleccion.Name = "labelSeleccion";
+            this.labelSeleccion.Size = new System.Drawing.Size(118, 17);
+            this.labelSeleccion.Text = "toolStripStatusLabel2";
             // 
             // BarraTitulo
             // 
@@ -189,7 +192,6 @@ namespace PocGDP
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.MenuVertical.Controls.Add(this.ListaElementos);
             this.MenuVertical.Controls.Add(this.ColorSeleccionado);
             this.MenuVertical.Controls.Add(this.btnPintar);
             this.MenuVertical.Controls.Add(this.pictureBox1);
@@ -198,23 +200,6 @@ namespace PocGDP
             this.MenuVertical.Name = "MenuVertical";
             this.MenuVertical.Size = new System.Drawing.Size(220, 593);
             this.MenuVertical.TabIndex = 4;
-            // 
-            // ListaElementos
-            // 
-            this.ListaElementos.BackgroundImageTiled = true;
-            this.ListaElementos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ListaElementos.HideSelection = false;
-            this.ListaElementos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
-            this.ListaElementos.Location = new System.Drawing.Point(14, 151);
-            this.ListaElementos.MultiSelect = false;
-            this.ListaElementos.Name = "ListaElementos";
-            this.ListaElementos.Size = new System.Drawing.Size(187, 227);
-            this.ListaElementos.TabIndex = 3;
-            this.ListaElementos.UseCompatibleStateImageBehavior = false;
-            this.ListaElementos.View = System.Windows.Forms.View.Tile;
             // 
             // ColorSeleccionado
             // 
@@ -257,7 +242,8 @@ namespace PocGDP
             this.btnLimpiar,
             this.btnLinea,
             this.btnCirculo,
-            this.btnCuadrado});
+            this.btnCuadrado,
+            this.btnSeleccion});
             this.toolStrip1.Location = new System.Drawing.Point(220, 35);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1088, 25);
@@ -326,7 +312,6 @@ namespace PocGDP
             this.btnLinea.Name = "btnLinea";
             this.btnLinea.Size = new System.Drawing.Size(80, 22);
             this.btnLinea.Text = "Mano Alzada";
-            this.btnLinea.Click += new System.EventHandler(this.btnLinea_Click);
             // 
             // btnCirculo
             // 
@@ -347,6 +332,16 @@ namespace PocGDP
             this.btnCuadrado.Size = new System.Drawing.Size(63, 22);
             this.btnCuadrado.Text = "Cuadrado";
             this.btnCuadrado.Click += new System.EventHandler(this.btnCuadrado_Click);
+            // 
+            // btnSeleccion
+            // 
+            this.btnSeleccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnSeleccion.Image = ((System.Drawing.Image)(resources.GetObject("btnSeleccion.Image")));
+            this.btnSeleccion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSeleccion.Name = "btnSeleccion";
+            this.btnSeleccion.Size = new System.Drawing.Size(71, 22);
+            this.btnSeleccion.Text = "Seleccionar";
+            this.btnSeleccion.Click += new System.EventHandler(this.btnSeleccion_Click);
             // 
             // CanvasPrincipal
             // 
@@ -410,8 +405,9 @@ namespace PocGDP
         private System.Windows.Forms.ToolStripButton btnLimpiar;
         private System.Windows.Forms.ToolStripButton btnLinea;
         private System.Windows.Forms.ToolStripButton btnCirculo;
-        private System.Windows.Forms.ListView ListaElementos;
         private System.Windows.Forms.ToolStripButton btnCuadrado;
+        private System.Windows.Forms.ToolStripButton btnSeleccion;
+        private System.Windows.Forms.ToolStripStatusLabel labelSeleccion;
     }
 }
 

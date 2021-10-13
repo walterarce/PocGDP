@@ -12,6 +12,8 @@ namespace PocGDP
         Object Elemento = null;
         List<Linea> Dibujo = new List<Linea>();
         List<Figura> figuras = new List<Figura>();
+        private Figura figuraSeleccionada;
+        Figura figura = null;
         Linea ln = null;
         Color ColorLinea =Color.Red;
         float AnchoLinea = 1;
@@ -22,7 +24,15 @@ namespace PocGDP
         {
             InitializeComponent();
         }
-
+        private Figura SeleccionaFigura(int x, int y)
+        {
+            for (int i = figuras.Count - 1; i >= 0; i--)
+            {
+                if (figuras[i].FiguraContenida(x, y))
+                    return figuras[i];
+            }
+            return null;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             ColorSeleccionado.BackColor = ColorLinea;
@@ -99,15 +109,9 @@ namespace PocGDP
             grp.Dispose();
         }
 
-        private void btnLinea_Click(object sender, EventArgs e)
-        {
-            Elemento = new Linea();
-        }
+    
 
-        private void btnCirculo_Click(object sender, EventArgs e)
-        {
-            Elemento = new Circulo();
-        }
+       
 
 
 
@@ -119,17 +123,36 @@ namespace PocGDP
             }
             
         }
-
+        private void Redibujar()
+        {
+            foreach (var figura in figuras)
+            {
+                figura.Dibujar(this);
+            }
+        }
         private void CanvasPrincipal_MouseDown(object sender, MouseEventArgs e)
         {
-            estado = "dibujando";
-            p1_actual = new Punto(e.X,e.Y);
-
-            if (Elemento is Linea)
+            if (estado == "dibujando")
             {
-                inicial = e.Location;
-                ln = new Linea();
+                p1_actual = new Punto(e.X, e.Y);
             }
+            
+            else if (estado == "seleccionando")
+            {
+                figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
+                if (figuraSeleccionada != null)
+                {
+                    figuraSeleccionada.colorRelleno = Color.Red;
+                    labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
+                    foreach (var figura in figuras)
+                    {
+                        if (figura != figuraSeleccionada)
+                            figura.colorRelleno = Color.White;
+                    }
+                    Redibujar();
+                }
+            }
+            
         }
 
         private void CanvasPrincipal_MouseMove(object sender, MouseEventArgs e)
@@ -156,26 +179,43 @@ namespace PocGDP
         private void CanvasPrincipal_MouseUp(object sender, MouseEventArgs e)
         {
             toolStripStatusLabel1.Text = String.Format($"x:{e.X}, y:{e.Y}");
-            if (Elemento is Cuadrado && estado == "dibujando")
+            if (btnCuadrado.Checked)
             {
-                Cuadrado cuadrado = new Cuadrado(p1_actual, new Punto(e.X, e.Y));
-                cuadrado.Dibujar(this);
-                figuras.Add(cuadrado);
-                estado = "normal";
+                figura = new Cuadrado(p1_actual, new Punto(e.X, e.Y));  
             }
-            if (Elemento is Circulo && estado == "dibujando")
+            else if (btnCirculo.Checked)
             {
-                Circulo circulo = new Circulo(p1_actual, new Punto(e.X, e.Y));
-                circulo.Dibujar(this);
-                figuras.Add(circulo);
-                estado = "normal";
+                figura = new Circulo(p1_actual, new Punto(e.X, e.Y));
             }
 
+            if (figura!=null)
+            {
+                figura.Dibujar(this);
+                figuras.Add(figura);
+            }
+            
+        }
+
+        private void btnSeleccion_Click(object sender, EventArgs e)
+        {
+            estado = "seleccionando";
+            btnSeleccion.Checked = true;
+            btnCuadrado.Checked = false;
+            btnCirculo.Checked = false;
+        }
+
+        private void btnCirculo_Click(object sender, EventArgs e)
+        {
+            estado = "dibujando";
+            btnCirculo.Checked = true;
+            btnCuadrado .Checked = false;
         }
 
         private void btnCuadrado_Click(object sender, EventArgs e)
         {
-            Elemento = new  Cuadrado();
+            estado = "dibujando";
+            btnCuadrado.Checked = true;
+            btnCirculo.Checked = false;
         }
     }
 }

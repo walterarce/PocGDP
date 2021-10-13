@@ -6,67 +6,44 @@ namespace PocGDP
     {
         public Punto punto1 { get; set; }
         public Punto punto2 { get; set; }
+        public SolidBrush rellenosolido { get; set; }
+        public int anchoLapicera { get; set; }
+        public Color colorRelleno { get; set; }
+        public Color colorContorno { get; set; }
 
-        private int ancho;
 
-        public int Ancho
+        public Figura(Punto punto1, Punto punto2)
         {
-            get { return ancho; }
-            set { ancho = value; }
+            this.punto1 = punto1;
+            this.punto2 = punto2;
+            this.colorContorno = Color.Black;
+            this.colorRelleno = Color.White;
+            this.rellenosolido = new SolidBrush(colorRelleno);
+
         }
-
-
-        private int alto;
-
-        public int Alto
+        public Figura(Punto punto1, Punto punto2, Color colorcontorno)
         {
-            get { return alto; }
-            set { alto = value; }
+            this.punto1 = punto1;
+            this.punto2 = punto2;
+            this.colorContorno = colorcontorno;
+            this.colorRelleno = Color.White;
+            this.rellenosolido = new SolidBrush(colorRelleno);
+
         }
-
-
-
-        private string nombre;
-
-        public string Nombre
+        public Figura(Punto punto1, Punto punto2, Color colorcontorno, Color colorrelleno)
         {
-            get { return nombre; }
-            set { nombre = value; }
+            this.punto1 = punto1;
+            this.punto2 = punto2;
+            this.colorContorno = colorcontorno;
+            this.colorRelleno = colorrelleno;
         }
-        private float anchotrazo;
-
-        public float AnchoTrazo
-        {
-            get { return anchotrazo; }
-            set { anchotrazo = value; }
-        }
-
-        private Color colortrazo;
-
-        public Color Colortrazo
-        {
-            get { return colortrazo; }
-            set { colortrazo = value; }
-        }
-        private Pen lapiz;
-
-        public Pen Lapiz
-        {
-            get { return lapiz; }
-            set { lapiz = value; }
-        }
-
-        private Brush brocha;
-
-        public Brush Brocha
-        {
-            get { return brocha; }
-            set { brocha = value; }
-        }
-
-
 
         public abstract void Dibujar(Form f1);
+
+        public bool FiguraContenida(int x , int y)
+        {
+            return (x >= punto1.X && x <= punto2.X && y >= punto1.Y && y <= punto2.Y);
+        }
 
     }
 }
