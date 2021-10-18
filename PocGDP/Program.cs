@@ -16,7 +16,7 @@ namespace PocGDP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CanvasPrincipal());
+            Application.Run(new frmToolbar());
         }
     }
 }

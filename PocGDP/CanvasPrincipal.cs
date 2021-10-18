@@ -8,6 +8,7 @@ namespace PocGDP
 {
     public partial class CanvasPrincipal : Form
     {
+        public string valorchecked { get; set; }
         Point inicial = new Point();
         Object Elemento = null;
         List<Linea> Dibujo = new List<Linea>();
@@ -20,6 +21,7 @@ namespace PocGDP
         Graphics grp = null;
         private string estado = "normal";
         private Punto p1_actual;
+        frmToolbar formutool = new frmToolbar();
         public CanvasPrincipal()
         {
             InitializeComponent();
@@ -33,11 +35,7 @@ namespace PocGDP
             }
             return null;
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            ColorSeleccionado.BackColor = ColorLinea;
-           
-        }
+
       
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
@@ -50,57 +48,15 @@ namespace PocGDP
             Application.Exit();
         }
 
-        private void botonMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-            botonMaximizar.Visible = true;
-        }
-
-        private void botonMaximizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
-            botonMaximizar.Visible = false;
-            btnRestaurar.Visible = true;
-        }
-
-        private void btnRestaurar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Normal;
-            botonMaximizar.Visible = true;
-            botonMinimizar.Visible = true;
-            btnRestaurar.Visible = false;
-        }
-
-
-
         private void btnPintar_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
             ColorLinea = colorDialog1.Color;
-            ColorSeleccionado.BackColor = ColorLinea;
+
         }
 
-        private void btnColor_Click(object sender, EventArgs e)
-        {
-            colorDialog1.ShowDialog();
-            ColorLinea = colorDialog1.Color;
-            ColorSeleccionado.BackColor = ColorLinea;
-        }
 
-        private void Ancho1_Click(object sender, EventArgs e)
-        {
-            AnchoLinea = 2.5f;
-        }
-
-        private void Ancho2_Click(object sender, EventArgs e)
-        {
-            AnchoLinea = 4.5f;
-        }
-
-        private void Ancho3_Click(object sender, EventArgs e)
-        {
-            AnchoLinea = 6.5f;
-        }
+  
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -108,11 +64,6 @@ namespace PocGDP
             grp.Clear(Color.White);
             grp.Dispose();
         }
-
-    
-
-       
-
 
 
         private void CanvasPrincipal_Paint(object sender, PaintEventArgs e)
@@ -139,20 +90,37 @@ namespace PocGDP
             
             else if (estado == "seleccionando")
             {
-                figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
-                if (figuraSeleccionada != null)
+                SelecciondeObjeto(e);
+            }
+
+        }
+
+        private void SelecciondeObjeto(MouseEventArgs e)
+        {
+            figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
+            if (figuraSeleccionada != null)
+            {
+                figuraSeleccionada.colorRelleno = Color.Red;
+                labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
+                foreach (var figura in figuras)
                 {
-                    figuraSeleccionada.colorRelleno = Color.Red;
-                    labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
-                    foreach (var figura in figuras)
-                    {
-                        if (figura != figuraSeleccionada)
-                            figura.colorRelleno = Color.White;
-                    }
-                    Redibujar();
+                    if (figura != figuraSeleccionada)
+                        figura.colorRelleno = Color.White;
+                }
+                Redibujar();
+            }
+        }
+        private void DeseleccionObjeto()
+        {
+            if (figuraSeleccionada != null)
+            {
+                foreach (var figura in figuras)
+                {
+                    if (figura == figuraSeleccionada)
+                        figura.colorRelleno = figuraSeleccionada.colorRelleno;
                 }
             }
-            
+            Redibujar();
         }
 
         private void CanvasPrincipal_MouseMove(object sender, MouseEventArgs e)
@@ -176,46 +144,44 @@ namespace PocGDP
             
         }
 
+
         private void CanvasPrincipal_MouseUp(object sender, MouseEventArgs e)
         {
             toolStripStatusLabel1.Text = String.Format($"x:{e.X}, y:{e.Y}");
-            if (btnCuadrado.Checked)
+
+            foreach (ToolStrip item in this.Owner.Controls)
             {
-                figura = new Cuadrado(p1_actual, new Punto(e.X, e.Y));  
-            }
-            else if (btnCirculo.Checked)
-            {
-                figura = new Circulo(p1_actual, new Punto(e.X, e.Y));
+                foreach (ToolStripButton boton in item.Items)
+                {
+
+                    if (boton.Checked && boton.Text == "Circulo")
+                    {
+                        estado = "dibujando";
+                        figura = new Circulo(p1_actual, new Punto(e.X, e.Y));
+                    }
+                    if (boton.Checked && boton.Text == "Cuadrado")
+                    {
+                        estado = "dibujando";
+                        figura = new Cuadrado(p1_actual, new Punto(e.X, e.Y));
+                    }
+                    if (boton.Checked && boton.Text == "Seleccionar")
+                    {
+                        estado = "seleccionando";
+                    }
+                }
+                
             }
 
-            if (figura!=null)
+            if (figura != null)
             {
                 figura.Dibujar(this);
                 figuras.Add(figura);
             }
-            
+
         }
 
-        private void btnSeleccion_Click(object sender, EventArgs e)
-        {
-            estado = "seleccionando";
-            btnSeleccion.Checked = true;
-            btnCuadrado.Checked = false;
-            btnCirculo.Checked = false;
-        }
 
-        private void btnCirculo_Click(object sender, EventArgs e)
-        {
-            estado = "dibujando";
-            btnCirculo.Checked = true;
-            btnCuadrado .Checked = false;
-        }
 
-        private void btnCuadrado_Click(object sender, EventArgs e)
-        {
-            estado = "dibujando";
-            btnCuadrado.Checked = true;
-            btnCirculo.Checked = false;
-        }
+
     }
 }
