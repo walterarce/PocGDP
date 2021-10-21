@@ -40,7 +40,7 @@ namespace PocGDP
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            toolStripStatusLabel1.Text = colorDialog1.Color.ToString();
+            labelSeleccion.Text = colorDialog1.Color.ToString();
         }
 
         private void botonCerrar_Click(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace PocGDP
         {
             if (estado=="dibujando")
             {
-                toolStripStatusLabel1.Text = String.Format($"x:{e.X}, y:{e.Y}");
+                labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
                 //if (e.Button == MouseButtons.Left)
                 //{
                 //    grp = CanvasPrincipal.ActiveForm.CreateGraphics();
@@ -147,7 +147,7 @@ namespace PocGDP
 
         private void CanvasPrincipal_MouseUp(object sender, MouseEventArgs e)
         {
-            toolStripStatusLabel1.Text = String.Format($"x:{e.X}, y:{e.Y}");
+            labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
 
             foreach (ToolStrip item in this.Owner.Controls)
             {
@@ -159,12 +159,12 @@ namespace PocGDP
                         estado = "dibujando";
                         figura = new Circulo(p1_actual, new Punto(e.X, e.Y));
                     }
-                    if (boton.Checked && boton.Text == "Cuadrado")
+                    if (boton.Checked && boton.Name == "btnCuadrado")
                     {
                         estado = "dibujando";
                         figura = new Cuadrado(p1_actual, new Punto(e.X, e.Y));
                     }
-                    if (boton.Checked && boton.Text == "Seleccionar")
+                    if (boton.Checked && boton.Name == "btnCirculo")
                     {
                         estado = "seleccionando";
                     }

@@ -110,5 +110,89 @@
   <ItemGroup>
     <None Include="Resources\minimizar1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archivo-nuevo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cambiar-el-tamano.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\formato-de-archivo-psd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lapicera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lata-de-aerosol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moverse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paleta-de-color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retrato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seleccione.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tipografia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil-drawing-circles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newfile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\canvas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addtext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text-document-add-button-with-plus-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadrado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contorno-del-circulo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

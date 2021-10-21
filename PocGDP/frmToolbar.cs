@@ -73,11 +73,10 @@ namespace PocGDP
         {
             CanvasPrincipal frmcanvas = new CanvasPrincipal();
             frmcanvas.Owner = this;
-            frmcanvas.Text = this.OwnedForms.Length.ToString();
+            frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
             frmcanvas.Owner = this;
             formularios.Add(frmcanvas);
             frmcanvas.Show();
-
         }
 
         private void frmToolbar_KeyUp(object sender, KeyEventArgs e)
@@ -115,6 +114,31 @@ namespace PocGDP
             btnCuadrado.Checked = false;
             btnCirculo.Checked = false;
         }
+
+        private void frmToolbar_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnColor_MouseHover(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnNuevo_MouseEnter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            SeleccionColor.ShowDialog();
+        }
     }
     public class ToolbarEstado
      {
@@ -125,7 +149,6 @@ namespace PocGDP
         public Figura tipo_objeto { get; set; }
         public bool Seleccionado { get; set; }
         public string Estado_Accion { get; set; }
-
         public string Nombre_Figura { get; set; }
     }
 }
