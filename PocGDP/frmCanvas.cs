@@ -6,23 +6,16 @@ using System.Xml.Linq;
 
 namespace PocGDP
 {
-    public partial class CanvasPrincipal : Form
+    public partial class frmCanvas : Form
     {
-        public string valorchecked { get; set; }
-        Point inicial = new Point();
-        Object Elemento = null;
-        List<Linea> Dibujo = new List<Linea>();
         List<Figura> figuras = new List<Figura>();
+        CanvasManager canvasManager = new CanvasManager();
         private Figura figuraSeleccionada;
-        Figura figura = null;
-        Linea ln = null;
-        Color ColorLinea =Color.Red;
-        float AnchoLinea = 1;
+        private Figura nuevafigura;
         Graphics grp = null;
-        private string estado = "normal";
         private Punto p1_actual;
-        frmToolbar formutool = new frmToolbar();
-        public CanvasPrincipal()
+        public Figura figura { get; set; } 
+        public frmCanvas()
         {
             InitializeComponent();
         }
@@ -36,13 +29,6 @@ namespace PocGDP
             return null;
         }
 
-      
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            colorDialog1.ShowDialog();
-            labelSeleccion.Text = colorDialog1.Color.ToString();
-        }
-
         private void botonCerrar_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -51,12 +37,8 @@ namespace PocGDP
         private void btnPintar_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            ColorLinea = colorDialog1.Color;
 
         }
-
-
-  
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -66,32 +48,28 @@ namespace PocGDP
         }
 
 
-        private void CanvasPrincipal_Paint(object sender, PaintEventArgs e)
+        private void frmCanvas_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var figura in figuras)
-            {
-                figura.Dibujar(this);
-            }
-            
+            Redibujar();
+
         }
         private void Redibujar()
         {
-            foreach (var figura in figuras)
+            foreach (var figura in listafigura)
             {
                 figura.Dibujar(this);
             }
         }
-        private void CanvasPrincipal_MouseDown(object sender, MouseEventArgs e)
+        private void frmCanvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if (estado == "dibujando")
-            {
+           
+            nuevafigura = (Figura)FiguraFactory.FabricarObjeto(figura.ToString());
                 p1_actual = new Punto(e.X, e.Y);
-            }
-            
-            else if (estado == "seleccionando")
-            {
-                SelecciondeObjeto(e);
-            }
+            nuevafigura.punto1 = p1_actual;
+            //else if (estado == "seleccionando")
+            //{
+            //    SelecciondeObjeto(e);
+            //}
 
         }
 
@@ -123,10 +101,9 @@ namespace PocGDP
             Redibujar();
         }
 
-        private void CanvasPrincipal_MouseMove(object sender, MouseEventArgs e)
+        private void frmCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (estado=="dibujando")
-            {
+
                 labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
                 //if (e.Button == MouseButtons.Left)
                 //{
@@ -140,48 +117,35 @@ namespace PocGDP
                 //    }
  
                 //}
-            }
             
         }
 
 
-        private void CanvasPrincipal_MouseUp(object sender, MouseEventArgs e)
+        private void frmCanvas_MouseUp(object sender, MouseEventArgs e)
         {
             labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
 
-            foreach (ToolStrip item in this.Owner.Controls)
-            {
-                foreach (ToolStripButton boton in item.Items)
-                {
-
-                    if (boton.Checked && boton.Text == "Circulo")
-                    {
-                        estado = "dibujando";
-                        figura = new Circulo(p1_actual, new Punto(e.X, e.Y));
-                    }
-                    if (boton.Checked && boton.Name == "btnCuadrado")
-                    {
-                        estado = "dibujando";
-                        figura = new Cuadrado(p1_actual, new Punto(e.X, e.Y));
-                    }
-                    if (boton.Checked && boton.Name == "btnCirculo")
-                    {
-                        estado = "seleccionando";
-                    }
-                }
-                
-            }
-
+            
             if (figura != null)
             {
-                figura.Dibujar(this);
-                figuras.Add(figura);
+                nuevafigura.anchoLapicera = 2;
+                nuevafigura.colorContorno = Color.Black;
+                nuevafigura.colorRelleno = Color.White;
+                nuevafigura.punto2 = new Punto(e.X, e.Y);
+                nuevafigura.Dibujar(this);
+                nuevafigura.listadefiguras.Add(nuevafigura);
+                canvasManager.figuras_canvas.Add(nuevafigura);
+                figuras.Add(nuevafigura);
+                listafigura.Add(nuevafigura);
+                listaobjetos.DataSource = null;
+                listaobjetos.DataSource = listafigura;
             }
 
         }
 
-
-
-
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(listaobjetos.SelectedItem.ToString());
+        }
     }
 }

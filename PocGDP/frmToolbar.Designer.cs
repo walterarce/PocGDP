@@ -46,6 +46,8 @@ namespace PocGDP
             this.btnAddTexto = new System.Windows.Forms.ToolStripButton();
             this.btnAddImagen = new System.Windows.Forms.ToolStripButton();
             this.btnExit = new System.Windows.Forms.ToolStripButton();
+            this.btnTools = new System.Windows.Forms.ToolStripButton();
+            this.btnObjetos = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +65,9 @@ namespace PocGDP
             this.btnSeleccion,
             this.btnAddTexto,
             this.btnAddImagen,
-            this.btnExit});
+            this.btnExit,
+            this.btnTools,
+            this.btnObjetos});
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Name = "toolStrip1";
             // 
@@ -86,10 +90,9 @@ namespace PocGDP
             // 
             resources.ApplyResources(this.btnNuevo, "btnNuevo");
             this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNuevo.Image = global::PocGDP.Properties.Resources.canvas;
+            this.btnNuevo.Image = global::PocGDP.Properties.Resources.nuevo;
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            this.btnNuevo.MouseEnter += new System.EventHandler(this.btnNuevo_MouseEnter);
             // 
             // toolStripButton1
             // 
@@ -129,7 +132,6 @@ namespace PocGDP
             // btnCuadrado
             // 
             resources.ApplyResources(this.btnCuadrado, "btnCuadrado");
-            this.btnCuadrado.CheckOnClick = true;
             this.btnCuadrado.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnCuadrado.Image = global::PocGDP.Properties.Resources.cuadrado;
             this.btnCuadrado.Name = "btnCuadrado";
@@ -139,7 +141,6 @@ namespace PocGDP
             // 
             resources.ApplyResources(this.btnCirculo, "btnCirculo");
             this.btnCirculo.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCirculo.CheckOnClick = true;
             this.btnCirculo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnCirculo.Image = global::PocGDP.Properties.Resources.contorno_del_circulo;
             this.btnCirculo.Name = "btnCirculo";
@@ -175,6 +176,22 @@ namespace PocGDP
             this.btnExit.Name = "btnExit";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnTools
+            // 
+            this.btnTools.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnTools.Image = global::PocGDP.Properties.Resources.support;
+            resources.ApplyResources(this.btnTools, "btnTools");
+            this.btnTools.Name = "btnTools";
+            this.btnTools.Click += new System.EventHandler(this.btnTools_Click);
+            // 
+            // btnObjetos
+            // 
+            this.btnObjetos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnObjetos.Image = global::PocGDP.Properties.Resources.seleccion_de_caracteristicas;
+            resources.ApplyResources(this.btnObjetos, "btnObjetos");
+            this.btnObjetos.Name = "btnObjetos";
+            this.btnObjetos.Click += new System.EventHandler(this.btnObjetos_Click);
+            // 
             // frmToolbar
             // 
             resources.ApplyResources(this, "$this");
@@ -201,7 +218,6 @@ namespace PocGDP
         private System.Windows.Forms.ToolStripButton btnLimpiar;
         private System.Windows.Forms.ToolStripButton btnLinea;
         private System.Windows.Forms.ToolStripButton btnNuevo;
-        public System.Windows.Forms.ToolStripButton btnCuadrado;
         public System.Windows.Forms.ToolStripButton btnSeleccion;
         public System.Windows.Forms.ToolStripButton btnCirculo;
         private System.Windows.Forms.ImageList listaimagenes;
@@ -211,5 +227,8 @@ namespace PocGDP
         private System.Windows.Forms.ToolStripButton btnAddImagen;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnTools;
+        private System.Windows.Forms.ToolStripButton btnCuadrado;
+        private System.Windows.Forms.ToolStripButton btnObjetos;
     }
 }

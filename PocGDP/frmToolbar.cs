@@ -7,19 +7,10 @@ namespace PocGDP
 {
     public partial class frmToolbar : Form
     {
-        Point inicial = new Point();
-        Object Elemento = null;
-        List<Linea> Dibujo = new List<Linea>();
+        private frmObjetos ventanadeobjetos;
         List<Figura> figuras = new List<Figura>();
         List<Form> formularios = new List<Form>();
-        private Figura figuraSeleccionada;
-        Figura figura = null;
-        Linea ln = null;
-        Color ColorLinea = Color.Red;
-        float AnchoLinea = 1;
-        Graphics grp = null;
-        private string estado_fr = "normal";
-        private Punto p1_actual;
+        public Figura figura = null;
 
         public ToolbarEstado toolbarEstado = new ToolbarEstado();
         public ToolStripButton btnchecked { get; set; }
@@ -43,35 +34,11 @@ namespace PocGDP
                 figura.Dibujar(this);
             }
         }
-        private void SelecciondeObjeto(MouseEventArgs e)
-        {
-            figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
-            if (figuraSeleccionada != null)
-            {
-                figuraSeleccionada.colorRelleno = Color.Red;
-                foreach (var figura in figuras)
-                {
-                    if (figura != figuraSeleccionada)
-                        figura.colorRelleno = Color.White;
-                }
-                Redibujar();
-            }
-        }
-        private void DeseleccionObjeto()
-        {
-            if (figuraSeleccionada != null)
-            {
-                foreach (var figura in figuras)
-                {
-                    if (figura == figuraSeleccionada)
-                        figura.colorRelleno = figuraSeleccionada.colorRelleno;
-                }
-            }
-            Redibujar();
-        }
+       
+       
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            CanvasPrincipal frmcanvas = new CanvasPrincipal();
+            frmCanvas frmcanvas = new frmCanvas();
             frmcanvas.Owner = this;
             frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
             frmcanvas.Owner = this;
@@ -83,7 +50,7 @@ namespace PocGDP
         {
             if (e.KeyCode == Keys.Space)
             {
-                foreach (CanvasPrincipal frm in this.OwnedForms)
+                foreach (frmCanvas frm in this.OwnedForms)
                 {
                     frm.BackColor = Color.Black;
                 }
@@ -92,20 +59,24 @@ namespace PocGDP
 
         private void btnCirculo_Click(object sender, EventArgs e)
         {
-            DeseleccionObjeto();
-            btnCirculo.Checked = true;
-            btnCuadrado.Checked = false;
-            btnSeleccion.Checked = false;
+            
+            var circuloseleccionado= new Circulo();
+            foreach (frmCanvas frm in this.OwnedForms)
+            {
+                frm.figura = circuloseleccionado;
+            }
         }
 
 
 
         private void btnCuadrado_Click(object sender, EventArgs e)
         {
-            DeseleccionObjeto();
-            btnCirculo.Checked = false;
-            btnCuadrado.Checked = true;
-            btnSeleccion.Checked = false;
+            var cuadradoseleccionado = new Cuadrado();
+            foreach (frmCanvas frm in this.OwnedForms)
+            {
+                frm.figura = cuadradoseleccionado;
+            }
+        
         }
 
         private void btnSeleccion_Click(object sender, EventArgs e)
@@ -117,18 +88,13 @@ namespace PocGDP
 
         private void frmToolbar_Load(object sender, EventArgs e)
         {
-            
+            //frmlateraltools = new frmLateralTools();
+            //frmlateraltools.Owner = this;
+            //formularios.Add(frmlateraltools);
+            //frmlateraltools.Show();
         }
 
-        private void btnColor_MouseHover(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void btnNuevo_MouseEnter(object sender, EventArgs e)
-        {
-            
-        }
+      
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -138,6 +104,37 @@ namespace PocGDP
         private void btnColor_Click(object sender, EventArgs e)
         {
             SeleccionColor.ShowDialog();
+        }
+
+        private void btnTools_Click(object sender, EventArgs e)
+        {
+            //bool estaAbierto = frmObjetos.detectarFormularioAbierto("ventanadeobjetos");
+            //if (!estaAbierto)
+            //{
+            //    frmObjetos ventanadeobjetos = new frmObjetos();
+            //    ventanadeobjetos.Owner = this;
+            //    formularios.Add(ventanadeobjetos);
+            //    ventanadeobjetos.Show();
+            //}
+            
+        }
+        public static bool detectarFormularioAbierto(string formulario)
+        {
+            bool abierto = false;
+
+            if (Application.OpenForms[formulario] != null)
+            {
+                abierto = true;
+            }
+            return abierto;
+        }
+
+        private void btnObjetos_Click(object sender, EventArgs e)
+        {
+            frmObjetos ventanadeobjetos = new frmObjetos();
+            ventanadeobjetos.Owner = this;
+            formularios.Add(ventanadeobjetos);
+            ventanadeobjetos.Show();
         }
     }
     public class ToolbarEstado
