@@ -11,11 +11,9 @@ namespace PocGDP
         public int anchoLapicera { get; set; }
         public Color colorRelleno { get; set; }
         public Color colorContorno { get; set; }
-
-        public List<Figura> listadefiguras { get; set; }
+        public string NombreFigura { get; set; }
         public Figura()
         {
-            listadefiguras = new List<Figura>();
             this.rellenosolido = new SolidBrush(colorRelleno);
         }
 
@@ -26,7 +24,6 @@ namespace PocGDP
             this.colorContorno = Color.Black;
             this.colorRelleno = Color.White;
             this.rellenosolido = new SolidBrush(colorRelleno);
-            listadefiguras = new List<Figura>();
         }
         public Figura(Punto punto1, Punto punto2, Color colorcontorno)
         {
@@ -35,7 +32,6 @@ namespace PocGDP
             this.colorContorno = colorcontorno;
             this.colorRelleno = Color.White;
             this.rellenosolido = new SolidBrush(colorRelleno);
-            listadefiguras = new List<Figura>();
         }
         public Figura(Punto punto1, Punto punto2, Color colorcontorno, Color colorrelleno)
         {
@@ -43,7 +39,6 @@ namespace PocGDP
             this.punto2 = punto2;
             this.colorContorno = colorcontorno;
             this.colorRelleno = colorrelleno;
-            listadefiguras = new List<Figura>();
         }
 
         public abstract void Dibujar(Form f1);

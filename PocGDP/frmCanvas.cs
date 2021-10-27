@@ -8,8 +8,6 @@ namespace PocGDP
 {
     public partial class frmCanvas : Form
     {
-        List<Figura> figuras = new List<Figura>();
-        CanvasManager canvasManager = new CanvasManager();
         private Figura figuraSeleccionada;
         private Figura nuevafigura;
         Graphics grp = null;
@@ -21,10 +19,10 @@ namespace PocGDP
         }
         private Figura SeleccionaFigura(int x, int y)
         {
-            for (int i = figuras.Count - 1; i >= 0; i--)
+            for (int i = listafigura.Count - 1; i >= 0; i--)
             {
-                if (figuras[i].FiguraContenida(x, y))
-                    return figuras[i];
+                if (listafigura[i].FiguraContenida(x, y))
+                    return listafigura[i];
             }
             return null;
         }
@@ -62,10 +60,14 @@ namespace PocGDP
         }
         private void frmCanvas_MouseDown(object sender, MouseEventArgs e)
         {
-           
-            nuevafigura = (Figura)FiguraFactory.FabricarObjeto(figura.ToString());
+           if (figura != null)
+            {
+                nuevafigura = (Figura)FiguraFactory.FabricarObjeto(figura.ToString());
+                nuevafigura.NombreFigura = nuevafigura.GetType().Name + nuevafigura.GetHashCode();
                 p1_actual = new Punto(e.X, e.Y);
-            nuevafigura.punto1 = p1_actual;
+                nuevafigura.punto1 = p1_actual;
+            }
+            
             //else if (estado == "seleccionando")
             //{
             //    SelecciondeObjeto(e);
@@ -80,7 +82,7 @@ namespace PocGDP
             {
                 figuraSeleccionada.colorRelleno = Color.Red;
                 labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
-                foreach (var figura in figuras)
+                foreach (var figura in listafigura)
                 {
                     if (figura != figuraSeleccionada)
                         figura.colorRelleno = Color.White;
@@ -92,7 +94,7 @@ namespace PocGDP
         {
             if (figuraSeleccionada != null)
             {
-                foreach (var figura in figuras)
+                foreach (var figura in listafigura)
                 {
                     if (figura == figuraSeleccionada)
                         figura.colorRelleno = figuraSeleccionada.colorRelleno;
@@ -133,9 +135,6 @@ namespace PocGDP
                 nuevafigura.colorRelleno = Color.White;
                 nuevafigura.punto2 = new Punto(e.X, e.Y);
                 nuevafigura.Dibujar(this);
-                nuevafigura.listadefiguras.Add(nuevafigura);
-                canvasManager.figuras_canvas.Add(nuevafigura);
-                figuras.Add(nuevafigura);
                 listafigura.Add(nuevafigura);
                 listaobjetos.DataSource = null;
                 listaobjetos.DataSource = listafigura;
@@ -144,8 +143,40 @@ namespace PocGDP
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
+        { 
+            txtPunto1X.Text = ((Figura)listaobjetos.SelectedItem).punto1.X.ToString();
+            txtPunto1Y.Text = ((Figura)listaobjetos.SelectedItem).punto1.Y.ToString();
+            panelColorFondo.BackColor = ((Figura)listaobjetos.SelectedItem).colorRelleno;
+            figuraSeleccionada = SeleccionaFigura(((Figura)listaobjetos.SelectedItem).punto1.X, ((Figura)listaobjetos.SelectedItem).punto1.Y);
+            if (figuraSeleccionada != null)
+            {
+                figuraSeleccionada.colorRelleno = Color.Red;
+                labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
+                foreach (var figura in listafigura)
+                {
+                    if (figura != figuraSeleccionada)
+                        figura.colorRelleno = Color.White;
+                }
+                Redibujar();
+
+            }
+        }
+
+        private void listaobjetos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(listaobjetos.SelectedItem.ToString());
+            if (((Figura)listaobjetos.SelectedItem) !=null)
+               MessageBox.Show(((Figura)listaobjetos.SelectedItem).NombreFigura);
+        }
+
+        private void panelColorFondo_MouseClick(object sender, MouseEventArgs e)
+        {
+            colorFondo.ShowDialog();
+            panelColorFondo.BackColor =  colorFondo.Color;
+        }
+
+        private void frmCanvas_Load(object sender, EventArgs e)
+        {
+            frmToolbar.ActiveForm.Activate();
         }
     }
 }

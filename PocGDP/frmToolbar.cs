@@ -59,7 +59,7 @@ namespace PocGDP
 
         private void btnCirculo_Click(object sender, EventArgs e)
         {
-            
+       
             var circuloseleccionado= new Circulo();
             foreach (frmCanvas frm in this.OwnedForms)
             {
@@ -88,13 +88,13 @@ namespace PocGDP
 
         private void frmToolbar_Load(object sender, EventArgs e)
         {
-            //frmlateraltools = new frmLateralTools();
-            //frmlateraltools.Owner = this;
-            //formularios.Add(frmlateraltools);
-            //frmlateraltools.Show();
+            //ventanadeobjetos = new frmObjetos();
+
+            //formularios.Add(ventanadeobjetos);
+            //ventanadeobjetos.Show();
         }
 
-      
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {
