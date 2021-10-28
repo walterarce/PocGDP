@@ -12,14 +12,12 @@ namespace PocGDP
 {
     public partial class frmExplorer : Form
     {
+        public Figura figura { get; set; }
         public frmExplorer()
         {
             InitializeComponent();
         }
 
-        private void frmObjetos_Load(object sender, EventArgs e)
-        {
-           
-        }
+        
     }
 }

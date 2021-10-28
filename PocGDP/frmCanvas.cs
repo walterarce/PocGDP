@@ -12,7 +12,6 @@ namespace PocGDP
         private Figura nuevafigura;
         Graphics grp = null;
         private Punto p1_actual;
-        private frmExplorer objetos;
         public Figura figura { get; set; } 
         public frmCanvas()
         {
@@ -144,10 +143,14 @@ namespace PocGDP
                 listafigura.Add(nuevafigura);
                 listaobjetos.DataSource = null;
                 listaobjetos.DataSource = listafigura;
-                foreach (var item in this.objetos.Controls)
+                if (Application.OpenForms["frmExplorer"] !=null)
                 {
-                    if (ListBox )
+                    ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                    ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+                    
                 }
+                
+                
             }
            
         }
@@ -178,13 +181,7 @@ namespace PocGDP
             panelColorFondo.BackColor =  colorFondo.Color;
         }
 
-        private void frmCanvas_Load(object sender, EventArgs e)
-        {
-            //frmToolbar.ActiveForm.Activate();
-            // objetos = new frmObjetos();
-            //objetos.AddOwnedForm(this);
-            //objetos.Show();
-        }
+
 
         private void listaobjetos_MouseDown(object sender, MouseEventArgs e)
         {

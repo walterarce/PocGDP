@@ -42,6 +42,8 @@ namespace PocGDP
             frmcanvas.Owner = this;
             frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
             frmcanvas.Owner = this;
+            exploradorObjetos = new frmExplorer();
+          
             formularios.Add(frmcanvas);
             frmcanvas.Show();
         }
@@ -89,7 +91,6 @@ namespace PocGDP
         private void frmToolbar_Load(object sender, EventArgs e)
         {
             exploradorObjetos = new frmExplorer();
-            formularios.Add(exploradorObjetos);
             exploradorObjetos.Show();
         }
 
@@ -132,6 +133,7 @@ namespace PocGDP
         {
             frmExplorer ventanadeobjetos = new frmExplorer();
             ventanadeobjetos.Owner = this;
+            ventanadeobjetos.Name = "ventanaobjetos";
             formularios.Add(ventanadeobjetos);
             ventanadeobjetos.Show();
         }

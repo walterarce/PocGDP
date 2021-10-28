@@ -82,7 +82,7 @@
     <EmbeddedResource Include="frmCanvas.resx">
       <DependentUpon>frmCanvas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmObjetos.resx">
+    <EmbeddedResource Include="frmExplorer.resx">
       <DependentUpon>frmExplorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmToolbar.resx">

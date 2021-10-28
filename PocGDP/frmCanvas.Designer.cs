@@ -290,7 +290,6 @@ namespace PocGDP
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Canvas";
-            this.Load += new System.EventHandler(this.frmCanvas_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmCanvas_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmCanvas_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmCanvas_MouseMove);

@@ -29,24 +29,23 @@ namespace PocGDP
         /// </summary>
         private void InitializeComponent()
         {
-            this.listaobjetos = new System.Windows.Forms.ListView();
+            this.listadeobjetos = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // listaobjetos
+            // listadeobjetos
             // 
-            this.listaobjetos.HideSelection = false;
-            this.listaobjetos.Location = new System.Drawing.Point(12, 29);
-            this.listaobjetos.Name = "listaobjetos";
-            this.listaobjetos.Size = new System.Drawing.Size(317, 234);
-            this.listaobjetos.TabIndex = 0;
-            this.listaobjetos.UseCompatibleStateImageBehavior = false;
+            this.listadeobjetos.FormattingEnabled = true;
+            this.listadeobjetos.Location = new System.Drawing.Point(30, 26);
+            this.listadeobjetos.Name = "listadeobjetos";
+            this.listadeobjetos.Size = new System.Drawing.Size(209, 199);
+            this.listadeobjetos.TabIndex = 0;
             // 
             // frmExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 307);
-            this.Controls.Add(this.listaobjetos);
+            this.Controls.Add(this.listadeobjetos);
             this.Name = "frmExplorer";
             this.Text = "frmExplorer";
             this.ResumeLayout(false);
@@ -55,6 +54,6 @@ namespace PocGDP
 
         #endregion
 
-        private System.Windows.Forms.ListView listaobjetos;
+        public System.Windows.Forms.ListBox listadeobjetos;
     }
 }
