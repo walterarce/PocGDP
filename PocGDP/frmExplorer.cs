@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PocGDP
 {
-    public partial class frmObjetos : Form
+    public partial class frmExplorer : Form
     {
-        public frmObjetos()
+        public frmExplorer()
         {
             InitializeComponent();
         }

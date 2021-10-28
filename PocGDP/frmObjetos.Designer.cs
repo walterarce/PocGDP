@@ -1,7 +1,7 @@
 ﻿
 namespace PocGDP
 {
-    partial class frmObjetos
+    partial class frmExplorer
     {
         /// <summary>
         /// Required designer variable.
@@ -29,33 +29,32 @@ namespace PocGDP
         /// </summary>
         private void InitializeComponent()
         {
-            this.listadefiguras = new System.Windows.Forms.ListView();
+            this.listaobjetos = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // listadefiguras
+            // listaobjetos
             // 
-            this.listadefiguras.HideSelection = false;
-            this.listadefiguras.Location = new System.Drawing.Point(12, 29);
-            this.listadefiguras.Name = "listadefiguras";
-            this.listadefiguras.Size = new System.Drawing.Size(317, 234);
-            this.listadefiguras.TabIndex = 0;
-            this.listadefiguras.UseCompatibleStateImageBehavior = false;
+            this.listaobjetos.HideSelection = false;
+            this.listaobjetos.Location = new System.Drawing.Point(12, 29);
+            this.listaobjetos.Name = "listaobjetos";
+            this.listaobjetos.Size = new System.Drawing.Size(317, 234);
+            this.listaobjetos.TabIndex = 0;
+            this.listaobjetos.UseCompatibleStateImageBehavior = false;
             // 
-            // frmObjetos
+            // frmExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 275);
-            this.Controls.Add(this.listadefiguras);
-            this.Name = "frmObjetos";
-            this.Text = "frmObjetos";
-            this.Load += new System.EventHandler(this.frmObjetos_Load);
+            this.ClientSize = new System.Drawing.Size(355, 307);
+            this.Controls.Add(this.listaobjetos);
+            this.Name = "frmExplorer";
+            this.Text = "frmExplorer";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listadefiguras;
+        private System.Windows.Forms.ListView listaobjetos;
     }
 }

@@ -7,7 +7,7 @@ namespace PocGDP
 {
     public partial class frmToolbar : Form
     {
-        private frmObjetos ventanadeobjetos;
+        public frmExplorer exploradorObjetos { get; set; }
         List<Figura> figuras = new List<Figura>();
         List<Form> formularios = new List<Form>();
         public Figura figura = null;
@@ -88,10 +88,9 @@ namespace PocGDP
 
         private void frmToolbar_Load(object sender, EventArgs e)
         {
-            //ventanadeobjetos = new frmObjetos();
-
-            //formularios.Add(ventanadeobjetos);
-            //ventanadeobjetos.Show();
+            exploradorObjetos = new frmExplorer();
+            formularios.Add(exploradorObjetos);
+            exploradorObjetos.Show();
         }
 
 
@@ -131,7 +130,7 @@ namespace PocGDP
 
         private void btnObjetos_Click(object sender, EventArgs e)
         {
-            frmObjetos ventanadeobjetos = new frmObjetos();
+            frmExplorer ventanadeobjetos = new frmExplorer();
             ventanadeobjetos.Owner = this;
             formularios.Add(ventanadeobjetos);
             ventanadeobjetos.Show();

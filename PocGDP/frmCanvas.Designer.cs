@@ -259,7 +259,7 @@ namespace PocGDP
             this.listaobjetos.Name = "listaobjetos";
             this.listaobjetos.Size = new System.Drawing.Size(287, 251);
             this.listaobjetos.TabIndex = 0;
-            this.listaobjetos.SelectedIndexChanged += new System.EventHandler(this.listaobjetos_SelectedIndexChanged);
+            this.listaobjetos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listaobjetos_MouseDown);
             // 
             // panelColorFondo
             // 
@@ -269,7 +269,12 @@ namespace PocGDP
             this.panelColorFondo.Name = "panelColorFondo";
             this.panelColorFondo.Size = new System.Drawing.Size(31, 19);
             this.panelColorFondo.TabIndex = 16;
+            this.panelColorFondo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelColorFondo_Paint);
             this.panelColorFondo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelColorFondo_MouseClick);
+            // 
+            // colorFondo
+            // 
+            this.colorFondo.Color = System.Drawing.Color.White;
             // 
             // frmCanvas
             // 

@@ -61,11 +61,11 @@
       <DependentUpon>frmCanvas.cs</DependentUpon>
     </Compile>
     <Compile Include="FiguraFactory.cs" />
-    <Compile Include="frmObjetos.cs">
+    <Compile Include="frmExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmObjetos.Designer.cs">
-      <DependentUpon>frmObjetos.cs</DependentUpon>
+      <DependentUpon>frmExplorer.cs</DependentUpon>
     </Compile>
     <Compile Include="frmToolbar.cs">
       <SubType>Form</SubType>
@@ -83,7 +83,7 @@
       <DependentUpon>frmCanvas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmObjetos.resx">
-      <DependentUpon>frmObjetos.cs</DependentUpon>
+      <DependentUpon>frmExplorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmToolbar.resx">
       <DependentUpon>frmToolbar.cs</DependentUpon>

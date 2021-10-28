@@ -12,6 +12,7 @@ namespace PocGDP
         private Figura nuevafigura;
         Graphics grp = null;
         private Punto p1_actual;
+        private frmExplorer objetos;
         public Figura figura { get; set; } 
         public frmCanvas()
         {
@@ -62,6 +63,8 @@ namespace PocGDP
         {
            if (figura != null)
             {
+                //aca fabrico el objeto que seleccione, y aplico un nombre con su codigo hash de objeto, 
+                // asimismo le asigno el punto de la punta izquierda superior
                 nuevafigura = (Figura)FiguraFactory.FabricarObjeto(figura.ToString());
                 nuevafigura.NombreFigura = nuevafigura.GetType().Name + nuevafigura.GetHashCode();
                 p1_actual = new Punto(e.X, e.Y);
@@ -126,20 +129,27 @@ namespace PocGDP
         private void frmCanvas_MouseUp(object sender, MouseEventArgs e)
         {
             labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
-
+            // cuando libero soltando el mouse, le doy el resto de las propiedades al objeto
+            // como ser colores de linea y fondo, y ancho , tambien genero un nuevo punto para la esquina inferior derecha
+            // lo dibujo en this, es decir en el form que es lo que el metodo espera en la implementacion de cada objeto
+            // me lo llevo a una coleccion y asigno la coleccion a la lista visual
             
             if (figura != null)
             {
                 nuevafigura.anchoLapicera = 2;
                 nuevafigura.colorContorno = Color.Black;
-                nuevafigura.colorRelleno = Color.White;
+                nuevafigura.colorRelleno = colorFondo.Color;
                 nuevafigura.punto2 = new Punto(e.X, e.Y);
                 nuevafigura.Dibujar(this);
                 listafigura.Add(nuevafigura);
                 listaobjetos.DataSource = null;
                 listaobjetos.DataSource = listafigura;
+                foreach (var item in this.objetos.Controls)
+                {
+                    if (ListBox )
+                }
             }
-
+           
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -162,12 +172,6 @@ namespace PocGDP
             }
         }
 
-        private void listaobjetos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (((Figura)listaobjetos.SelectedItem) !=null)
-               MessageBox.Show(((Figura)listaobjetos.SelectedItem).NombreFigura);
-        }
-
         private void panelColorFondo_MouseClick(object sender, MouseEventArgs e)
         {
             colorFondo.ShowDialog();
@@ -176,7 +180,20 @@ namespace PocGDP
 
         private void frmCanvas_Load(object sender, EventArgs e)
         {
-            frmToolbar.ActiveForm.Activate();
+            //frmToolbar.ActiveForm.Activate();
+            // objetos = new frmObjetos();
+            //objetos.AddOwnedForm(this);
+            //objetos.Show();
+        }
+
+        private void listaobjetos_MouseDown(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(((Figura)listaobjetos.SelectedItem).NombreFigura);
+        }
+
+        private void panelColorFondo_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
