@@ -53,7 +53,7 @@ namespace PocGDP
         {
             foreach (var figura in listafigura)
             {
-                figura.Dibujar(this);
+                figura.Dibujar(canvas);
             }
         }
         private void frmCanvas_MouseDown(object sender, MouseEventArgs e)
@@ -137,7 +137,7 @@ namespace PocGDP
                 nuevafigura.colorContorno = Color.Black;
                 nuevafigura.colorRelleno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorFondo.Color;
                 nuevafigura.punto2 = new Punto(e.X, e.Y);
-                nuevafigura.Dibujar(this);
+                nuevafigura.Dibujar(canvas);
                 listafigura.Add(nuevafigura);
                 if (Application.OpenForms["frmExplorer"] !=null)
                 {
@@ -149,6 +149,46 @@ namespace PocGDP
                 
             }
            
+        }
+
+        private void canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (figura != null)
+            {
+                //aca fabrico el objeto que seleccione, y aplico un nombre con su codigo hash de objeto, 
+                // asimismo le asigno el punto de la punta izquierda superior
+                nuevafigura = (Figura)FiguraFactory.FabricarObjeto(figura.ToString());
+                nuevafigura.NombreFigura = nuevafigura.GetType().Name + nuevafigura.GetHashCode();
+                p1_actual = new Punto(e.X, e.Y);
+                nuevafigura.punto1 = p1_actual;
+            }
+        }
+
+        private void canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
+            // cuando libero soltando el mouse, le doy el resto de las propiedades al objeto
+            // como ser colores de linea y fondo, y ancho , tambien genero un nuevo punto para la esquina inferior derecha
+            // lo dibujo en this, es decir en el form que es lo que el metodo espera en la implementacion de cada objeto
+            // me lo llevo a una coleccion y asigno la coleccion a la lista visual
+
+            if (figura != null)
+            {
+                nuevafigura.anchoLapicera = 2;
+                nuevafigura.colorContorno = Color.Black;
+                nuevafigura.colorRelleno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorFondo.Color;
+                nuevafigura.punto2 = new Punto(e.X, e.Y);
+                nuevafigura.Dibujar(canvas);
+                listafigura.Add(nuevafigura);
+                if (Application.OpenForms["frmExplorer"] != null)
+                {
+                    ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                    ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+
+                }
+
+
+            }
         }
     }
 }

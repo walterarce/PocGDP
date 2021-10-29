@@ -14,7 +14,7 @@ namespace PocGDP
             this.punto1 = punto1;
             this.punto2 = punto2;
         }
-        public override void Dibujar(Form f1)
+        public override void Dibujar(PictureBox f1)
         {
             Graphics grp = f1.CreateGraphics();
             rellenosolido.Color = Color.Red;

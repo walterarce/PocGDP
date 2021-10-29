@@ -27,13 +27,7 @@ namespace PocGDP
             }
             return null;
         }
-        private void Redibujar()
-        {
-            foreach (var figura in figuras)
-            {
-                figura.Dibujar(this);
-            }
-        }
+       
        
        
         private void btnNuevo_Click(object sender, EventArgs e)

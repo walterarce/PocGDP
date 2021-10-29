@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PocGDP
@@ -28,6 +22,8 @@ namespace PocGDP
         {
             txtPunto1X.Text = ((Figura)this.listadeobjetos.SelectedItem).punto1.X.ToString();
             txtPunto1Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto1.Y.ToString();
+            Punto2X.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.X.ToString();
+            Punto2Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.Y.ToString();
             panelColorFondo.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
             ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((frmCanvas)Application.OpenForms["frmCanvas"]).SeleccionaFigura(((Figura)this.listadeobjetos.SelectedItem).punto1.X, ((Figura)this.listadeobjetos.SelectedItem).punto1.Y);
             if (((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada != null)

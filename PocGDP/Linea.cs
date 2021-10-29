@@ -19,7 +19,7 @@ namespace PocGDP
             puntos.Add(pnt);
         }
 
-        public override void Dibujar(Form f1)
+        public override void Dibujar(PictureBox f1)
         {
             Graphics grp = f1.CreateGraphics();
             //grp.DrawLine(new Pen(colorContorno, anchoLapicera), this.punto1.X, this.punto1.Y,this.punto2.X,this.punto2.Y);

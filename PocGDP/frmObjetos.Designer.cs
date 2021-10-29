@@ -75,6 +75,7 @@ namespace PocGDP
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.panelColorFondo);
             this.groupBox1.Controls.Add(this.textBox8);
             this.groupBox1.Controls.Add(this.label8);
@@ -236,7 +237,7 @@ namespace PocGDP
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(210, 469);
+            this.btnEdit.Location = new System.Drawing.Point(246, 224);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(97, 23);
             this.btnEdit.TabIndex = 2;
@@ -249,7 +250,6 @@ namespace PocGDP
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 799);
-            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.panel1);
             this.Name = "frmExplorer";
             this.Text = "frmExplorer";

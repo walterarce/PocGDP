@@ -41,7 +41,7 @@ namespace PocGDP
             this.colorRelleno = colorrelleno;
         }
 
-        public abstract void Dibujar(Form f1);
+        public abstract void Dibujar(PictureBox f1);
 
         public bool FiguraContenida(int x , int y)
         {

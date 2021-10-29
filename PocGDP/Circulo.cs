@@ -18,7 +18,7 @@ namespace PocGDP
             
         }
 
-        public override void Dibujar(Form f1)
+        public override void Dibujar(PictureBox f1)
         {
             Graphics grp = f1.CreateGraphics();
             rellenosolido.Color = Color.Red;
