@@ -29,7 +29,7 @@ namespace PocGDP
             if (((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada != null)
             {
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada.colorRelleno = Color.Red;
-                //labelSeleccion.Text = ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada.GetType().ToString();
+              
                 foreach (var figura in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
                 {
                     if (figura != ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada)
@@ -38,6 +38,26 @@ namespace PocGDP
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
 
             }
+        }
+
+        private void listadeobjetos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((Figura)this.listadeobjetos.SelectedItem) != null)
+            {
+                txtPunto1X.Text = ((Figura)this.listadeobjetos.SelectedItem).punto1.X.ToString();
+                txtPunto1Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto1.Y.ToString();
+                Punto2X.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.X.ToString();
+                Punto2Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.Y.ToString();
+                panelColorFondo.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((frmCanvas)Application.OpenForms["frmCanvas"]).SeleccionaFigura(((Figura)this.listadeobjetos.SelectedItem).punto1.X, ((Figura)this.listadeobjetos.SelectedItem).punto1.Y);
+                
+            }
+                
+        }
+
+        private void listadeobjetos_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            MessageBox.Show("se dibuja");
         }
     }
 }

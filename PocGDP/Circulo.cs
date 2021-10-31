@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace PocGDP
@@ -21,7 +20,6 @@ namespace PocGDP
         public override void Dibujar(PictureBox f1)
         {
             Graphics grp = f1.CreateGraphics();
-            rellenosolido.Color = Color.Red;
             grp.FillEllipse(new SolidBrush(colorRelleno), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
             grp.DrawEllipse(new Pen(colorContorno, anchoLapicera), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
         }

@@ -75,33 +75,33 @@ namespace PocGDP
 
         }
 
-        private void SelecciondeObjeto(MouseEventArgs e)
-        {
-            figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
-            if (figuraSeleccionada != null)
-            {
-                figuraSeleccionada.colorRelleno = Color.Red;
-                labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
-                foreach (var figura in listafigura)
-                {
-                    if (figura != figuraSeleccionada)
-                        figura.colorRelleno = Color.White;
-                }
-                Redibujar();
-            }
-        }
-        private void DeseleccionObjeto()
-        {
-            if (figuraSeleccionada != null)
-            {
-                foreach (var figura in listafigura)
-                {
-                    if (figura == figuraSeleccionada)
-                        figura.colorRelleno = figuraSeleccionada.colorRelleno;
-                }
-            }
-            Redibujar();
-        }
+        //private void SelecciondeObjeto(MouseEventArgs e)
+        //{
+        //    figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
+        //    if (figuraSeleccionada != null)
+        //    {
+        //        figuraSeleccionada.colorRelleno = Color.Red;
+        //        labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
+        //        foreach (var figura in listafigura)
+        //        {
+        //            if (figura != figuraSeleccionada)
+        //                figura.colorRelleno = Color.White;
+        //        }
+        //        Redibujar();
+        //    }
+        //}
+        //private void DeseleccionObjeto()
+        //{
+        //    if (figuraSeleccionada != null)
+        //    {
+        //        foreach (var figura in listafigura)
+        //        {
+        //            if (figura == figuraSeleccionada)
+        //                figura.colorRelleno = figuraSeleccionada.colorRelleno;
+        //        }
+        //    }
+        //    Redibujar();
+        //}
 
         private void frmCanvas_MouseMove(object sender, MouseEventArgs e)
         {
@@ -143,12 +143,10 @@ namespace PocGDP
                 {
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+
                     
                 }
-                
-                
             }
-           
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -184,10 +182,8 @@ namespace PocGDP
                 {
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
-
+                    ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedIndex = ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.Items.Count - 1;
                 }
-
-
             }
         }
     }
