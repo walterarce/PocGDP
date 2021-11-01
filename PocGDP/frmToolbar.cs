@@ -11,7 +11,6 @@ namespace PocGDP
         List<Figura> figuras = new List<Figura>();
         List<Form> formularios = new List<Form>();
         public Figura figura = null;
-
         public ToolbarEstado toolbarEstado = new ToolbarEstado();
         public ToolStripButton btnchecked { get; set; }
         public frmToolbar()
@@ -143,11 +142,17 @@ namespace PocGDP
 
         private void btnAddTexto_Click(object sender, EventArgs e)
         {
-            var texto_a_imagen = new StringPic();
+            var texto = new StringPic();
             foreach (frmCanvas frm in this.OwnedForms)
             {
-                frm.figura = texto_a_imagen;
+                frm.figura = texto;
             }
+
+            frmTexto textopic = new frmTexto();
+            textopic.ShowDialog();
+
+
+
         }
     }
     public class ToolbarEstado

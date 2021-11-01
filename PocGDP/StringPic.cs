@@ -5,12 +5,22 @@ namespace PocGDP
 {
     public class StringPic : Figura, IFigura
     {
-        public override void Dibujar(PictureBox f1)
+        public string Texto { get; set; }
+        public string FuenteTexto { get; set; }
+        public float SizeTexto { get; set; }
+
+        public StringPic()
         {
+            this.colorRelleno = Color.Black;
+        }
+        public override void Dibujar(PictureBox f1)
+        { 
+            
             Graphics grp = f1.CreateGraphics();
-            using (Font myFont = new Font("Arial", 14))
+            var brocha = new SolidBrush(colorRelleno);
+            using (Font myFont = new Font(FuenteTexto, SizeTexto))
             {
-                grp.DrawString("Hello .NET Guide!", myFont, Brushes.Green, this.punto1.X,this.punto1.Y);
+                grp.DrawString(Texto, myFont, brocha, this.punto1.X,this.punto1.Y);
             }
         }
         public override string ToString()

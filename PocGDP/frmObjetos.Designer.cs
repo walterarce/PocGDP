@@ -110,7 +110,7 @@ namespace PocGDP
             // 
             // panelColorFondo
             // 
-            this.panelColorFondo.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelColorFondo.BackColor = System.Drawing.Color.Black;
             this.panelColorFondo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelColorFondo.Location = new System.Drawing.Point(87, 175);
             this.panelColorFondo.Name = "panelColorFondo";

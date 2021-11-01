@@ -21,8 +21,6 @@ namespace PocGDP
         {
             this.punto1 = punto1;
             this.punto2 = punto2;
-            this.colorContorno = Color.Black;
-            this.colorRelleno = Color.White;
             this.rellenosolido = new SolidBrush(colorRelleno);
         }
         public Figura(Punto punto1, Punto punto2, Color colorcontorno)
@@ -30,7 +28,6 @@ namespace PocGDP
             this.punto1 = punto1;
             this.punto2 = punto2;
             this.colorContorno = colorcontorno;
-            this.colorRelleno = Color.White;
             this.rellenosolido = new SolidBrush(colorRelleno);
         }
         public Figura(Punto punto1, Punto punto2, Color colorcontorno, Color colorrelleno)

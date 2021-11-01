@@ -7,7 +7,7 @@ namespace PocGDP
     public partial class frmCanvas : Form
     {
         public Figura figuraSeleccionada;
-        private Figura nuevafigura;
+        public Figura nuevafigura;
         Graphics grp = null;
         private Punto p1_actual;
         public Figura figura { get; set; } 
@@ -66,6 +66,7 @@ namespace PocGDP
                 nuevafigura.NombreFigura = nuevafigura.GetType().Name + nuevafigura.GetHashCode();
                 p1_actual = new Punto(e.X, e.Y);
                 nuevafigura.punto1 = p1_actual;
+               
             }
             
             //else if (estado == "seleccionando")
@@ -148,6 +149,14 @@ namespace PocGDP
                 nuevafigura.NombreFigura = nuevafigura.GetType().Name + nuevafigura.GetHashCode();
                 p1_actual = new Punto(e.X, e.Y);
                 nuevafigura.punto1 = p1_actual;
+                if (nuevafigura is StringPic)
+                {
+                    ((StringPic)nuevafigura).Texto = ((StringPic)figura).Texto;
+                    ((StringPic)nuevafigura).SizeTexto = ((StringPic)figura).SizeTexto;
+                    ((StringPic)nuevafigura).FuenteTexto = ((StringPic)figura).FuenteTexto;
+                    ((StringPic)nuevafigura).colorRelleno = ((StringPic)figura).colorRelleno;
+                }
+                    
             }
         }
 
@@ -163,7 +172,7 @@ namespace PocGDP
             {
                 nuevafigura.anchoLapicera = 2;
                 nuevafigura.colorContorno = Color.Black;
-                nuevafigura.colorRelleno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorFondo.Color;
+               
                 nuevafigura.punto2 = new Punto(e.X, e.Y);
                 nuevafigura.Dibujar(canvas);
                 listafigura.Add(nuevafigura);
@@ -193,9 +202,6 @@ namespace PocGDP
             }
         }
 
-        private void canvas_Paint(object sender, PaintEventArgs e)
-        {
-           
-        }
+        
     }
 }

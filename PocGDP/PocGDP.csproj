@@ -66,6 +66,12 @@
     <Compile Include="frmObjetos.Designer.cs">
       <DependentUpon>frmExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTexto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTexto.Designer.cs">
+      <DependentUpon>frmTexto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmToolbar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmExplorer.resx">
       <DependentUpon>frmExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTexto.resx">
+      <DependentUpon>frmTexto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmToolbar.resx">
       <DependentUpon>frmToolbar.cs</DependentUpon>
