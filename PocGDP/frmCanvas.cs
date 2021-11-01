@@ -107,19 +107,8 @@ namespace PocGDP
         {
 
                 labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
-                //if (e.Button == MouseButtons.Left)
-                //{
-                //    grp = CanvasPrincipal.ActiveForm.CreateGraphics();
+               
 
-                //    if (Elemento is Linea)
-                //    {
-                //        grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
-                //        ln.AgregarPunto(e.Location);
-                //        Dibujo.Add(ln);
-                //    }
- 
-                //}
-            
         }
 
 
@@ -185,6 +174,28 @@ namespace PocGDP
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedIndex = ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.Items.Count - 1;
                 }
             }
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+
+                //    grp = CanvasPrincipal.ActiveForm.CreateGraphics();
+
+                if (nuevafigura is Linea)
+                {
+                    //grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
+                    ((Linea)nuevafigura).AgregarPunto(e.Location);
+                    ((Linea)nuevafigura).Dibujar(canvas);// Dibujo.Add(ln);
+                }
+
+            }
+        }
+
+        private void canvas_Paint(object sender, PaintEventArgs e)
+        {
+           
         }
     }
 }

@@ -13,6 +13,10 @@ namespace PocGDP
                     return new Cuadrado();
                 case "Circulo":
                     return new Circulo();
+                case "Linea":
+                    return new Linea();
+                case "StringPic":
+                    return new StringPic();
                 default:
                     return new Cuadrado();
             }

@@ -195,28 +195,6 @@
   <data name="btnLinea.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="btnLinea.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOSSURBVHhe7dtZyExhHMfxsSdZsiXlAsmSLRJulMKFQkop
-        pYQrF9YUohByLdnDBW5EiJA7FJK1bDeKlLKXfQnfn+bh39M578zbnDPznOP86nPh6bzN83ucOXNm5plS
-        xjMUO3EN73EXBzARuU5rrMVX/IqxB52Qu7TFSUSV9umM6I7cJK78T1xH1BlxB92Q+cSV16k+AEpPrMN3
-        2GNuoSsym7jy6xGVWfAX4Sa6IHNpbnmXqEU4gkwlrrxO6ZaolKhF0FgmElfe2Y9qFmER7N9dQfCpVN6p
-        ZhHa4RXc33xEKwSbuPIboML+eDWLsBf2b/ojyFS64KlocxdB44/hjv0GnRXBpVJ5FxU6BP+4uEWYCXuc
-        LqDBpdrySi88gH+s+IswBu9gj1mCoJJUecctwmi8LY85lxB1ljQstZbXvf8Zb0yO44039hz9EEySKD8d
-        LbCjPBZH5QchmCRV3qWpRch9eZdx+AF77H9Tfiz8q31RHsGkKA87SSnKeynKwx5XlIefojzssUV5BJOi
-        POwkpSjvpSgPe1xRHn6K8rDHFuURVNbATlL+m/LKBdiJfsYo2OS2vKLJ2cmKPoF1i5Dr8tpqYidraRGm
-        IrfllQmwE64kV+UV/7v2zXjtjTm5K6/4n70PxEhELcJy+Ml0eeUi3MS/wG000CLYTQjyAsPgkvnyiv2f
-        vq0BkxF4CVvQLUIuyveGLaDv6P0Mh78I+nfmyyuTYUusgh99RzcD/ldUVibLK8tgi8yDdmUvhvbgXIV2
-        bNtjfJkorzs5vXxthLaeHyy7h6hS1Qq+fBuotL+xsFa6BpyFXjKDjfbQai9tVIFq6fTX02AflmISdDYl
-        nT7QmVSrjvgbneJRpaLoDk/78A9jNaahL3QBTCuzcQ7+vUYttGFSd7alKeUBR0+BLdBLms6Mzh79WqNe
-        6YFjsPNL0lOUdpkBWYgQot1cl2HnlrSjKN0wA880EEhWwk5W9KuQbdiagAXogD9bR90DaMtZCNF7jA9w
-        89JPYuYilbgHkRMaCCC6/th57UZqsQ8UygLMh51X1OcKieUJ3AOFspF4O+wC6I1YarEvM3oTMwSNjC5M
-        dnu73lKnmhVwDyb30ahF0I8cT8PO5xRSTXs8gn1QnQm6NdY1oV60k/sT7Dz0ncNgpJ7xaOo9fKPorXbd
-        oo+tHiJqIvWm7xjmoO7R00HXBO23131y1OTSos8bz2MTUr3q/0up9BvbYQ7F7U6lmAAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
   <data name="btnLinea.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -224,7 +202,7 @@
     <value>60, 60</value>
   </data>
   <data name="btnLinea.Text" xml:space="preserve">
-    <value>Mano Alzada</value>
+    <value> </value>
   </data>
   <data name="btnCuadrado.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -249,18 +227,6 @@
   </data>
   <data name="btnCirculo.Text" xml:space="preserve">
     <value>Circulo</value>
-  </data>
-  <data name="btnSeleccion.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnSeleccion.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btnSeleccion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 60</value>
-  </data>
-  <data name="btnSeleccion.Text" xml:space="preserve">
-    <value>Seleccionar</value>
   </data>
   <data name="btnAddTexto.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -351,7 +317,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAm
-        FAAAAk1TRnQBSQFMAgEBCgEAAbgBAAG4AQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        FAAAAk1TRnQBSQFMAgEBCgEAAdABAAHQAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAATADAAEBAQABCAYAAQwYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -519,12 +485,6 @@
     <value>btnCirculo</value>
   </data>
   <data name="&gt;&gt;btnCirculo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSeleccion.Name" xml:space="preserve">
-    <value>btnSeleccion</value>
-  </data>
-  <data name="&gt;&gt;btnSeleccion.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnAddTexto.Name" xml:space="preserve">

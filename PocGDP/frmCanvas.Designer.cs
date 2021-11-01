@@ -69,7 +69,9 @@ namespace PocGDP
             this.canvas.Size = new System.Drawing.Size(1060, 475);
             this.canvas.TabIndex = 2;
             this.canvas.TabStop = false;
+            this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+            this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
             // frmCanvas

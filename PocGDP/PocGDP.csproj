@@ -77,6 +77,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Punto.cs" />
+    <Compile Include="StringPic.cs" />
     <EmbeddedResource Include="frmCanvas.resx">
       <DependentUpon>frmCanvas.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\seleccion-de-caracteristicas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line-segemnt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

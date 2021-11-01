@@ -29,12 +29,12 @@ namespace PocGDP
             if (((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada != null)
             {
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada.colorRelleno = Color.Red;
-              
-                foreach (var figura in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
-                {
-                    if (figura != ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada)
-                        figura.colorRelleno = Color.White;
-                }
+
+                //foreach (var figura in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
+                //{
+                //    if (figura != ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada)
+                //        figura.colorRelleno = Color.White;
+                //}
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
 
             }
@@ -50,7 +50,7 @@ namespace PocGDP
                 Punto2Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.Y.ToString();
                 panelColorFondo.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((frmCanvas)Application.OpenForms["frmCanvas"]).SeleccionaFigura(((Figura)this.listadeobjetos.SelectedItem).punto1.X, ((Figura)this.listadeobjetos.SelectedItem).punto1.Y);
-                
+               
             }
                 
         }

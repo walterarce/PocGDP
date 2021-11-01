@@ -42,7 +42,6 @@ namespace PocGDP
             this.btnLinea = new System.Windows.Forms.ToolStripButton();
             this.btnCuadrado = new System.Windows.Forms.ToolStripButton();
             this.btnCirculo = new System.Windows.Forms.ToolStripButton();
-            this.btnSeleccion = new System.Windows.Forms.ToolStripButton();
             this.btnAddTexto = new System.Windows.Forms.ToolStripButton();
             this.btnAddImagen = new System.Windows.Forms.ToolStripButton();
             this.btnExit = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +61,6 @@ namespace PocGDP
             this.btnLinea,
             this.btnCuadrado,
             this.btnCirculo,
-            this.btnSeleccion,
             this.btnAddTexto,
             this.btnAddImagen,
             this.btnExit,
@@ -127,7 +125,9 @@ namespace PocGDP
             // 
             resources.ApplyResources(this.btnLinea, "btnLinea");
             this.btnLinea.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLinea.Image = global::PocGDP.Properties.Resources.line_segemnt;
             this.btnLinea.Name = "btnLinea";
+            this.btnLinea.Click += new System.EventHandler(this.btnLinea_Click);
             // 
             // btnCuadrado
             // 
@@ -146,20 +146,13 @@ namespace PocGDP
             this.btnCirculo.Name = "btnCirculo";
             this.btnCirculo.Click += new System.EventHandler(this.btnCirculo_Click);
             // 
-            // btnSeleccion
-            // 
-            resources.ApplyResources(this.btnSeleccion, "btnSeleccion");
-            this.btnSeleccion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSeleccion.Image = global::PocGDP.Properties.Resources.seleccione;
-            this.btnSeleccion.Name = "btnSeleccion";
-            this.btnSeleccion.Click += new System.EventHandler(this.btnSeleccion_Click);
-            // 
             // btnAddTexto
             // 
             resources.ApplyResources(this.btnAddTexto, "btnAddTexto");
             this.btnAddTexto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnAddTexto.Image = global::PocGDP.Properties.Resources.text_document_add_button_with_plus_sign;
             this.btnAddTexto.Name = "btnAddTexto";
+            this.btnAddTexto.Click += new System.EventHandler(this.btnAddTexto_Click);
             // 
             // btnAddImagen
             // 
@@ -218,7 +211,6 @@ namespace PocGDP
         private System.Windows.Forms.ToolStripButton btnLimpiar;
         private System.Windows.Forms.ToolStripButton btnLinea;
         private System.Windows.Forms.ToolStripButton btnNuevo;
-        public System.Windows.Forms.ToolStripButton btnSeleccion;
         public System.Windows.Forms.ToolStripButton btnCirculo;
         private System.Windows.Forms.ImageList listaimagenes;
         private System.Windows.Forms.ToolStripButton btnExit;

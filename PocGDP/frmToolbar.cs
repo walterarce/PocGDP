@@ -77,7 +77,7 @@ namespace PocGDP
 
         private void btnSeleccion_Click(object sender, EventArgs e)
         {
-            btnSeleccion.Checked = true;
+           
             btnCuadrado.Checked = false;
             btnCirculo.Checked = false;
         }
@@ -130,6 +130,24 @@ namespace PocGDP
             ventanadeobjetos.Name = "ventanaobjetos";
             formularios.Add(ventanadeobjetos);
             ventanadeobjetos.Show();
+        }
+
+        private void btnLinea_Click(object sender, EventArgs e)
+        {
+            var lineaseleccionada = new Linea();
+            foreach (frmCanvas frm in this.OwnedForms)
+            {
+                frm.figura = lineaseleccionada;
+            }
+        }
+
+        private void btnAddTexto_Click(object sender, EventArgs e)
+        {
+            var texto_a_imagen = new StringPic();
+            foreach (frmCanvas frm in this.OwnedForms)
+            {
+                frm.figura = texto_a_imagen;
+            }
         }
     }
     public class ToolbarEstado
