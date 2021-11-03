@@ -79,6 +79,7 @@
       <DependentUpon>frmToolbar.cs</DependentUpon>
     </Compile>
     <Compile Include="IFigura.cs" />
+    <Compile Include="Imagen.cs" />
     <Compile Include="Linea.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

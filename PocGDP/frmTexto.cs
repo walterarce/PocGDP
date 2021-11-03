@@ -32,7 +32,7 @@ namespace PocGDP
         private void btnInsertarText_Click(object sender, EventArgs e)
         {
        
-             ((StringPic)((frmCanvas)Application.OpenForms["frmCanvas"]).figura).FuenteTexto = dlgFuente.Font.Name;
+            ((StringPic)((frmCanvas)Application.OpenForms["frmCanvas"]).figura).FuenteTexto = dlgFuente.Font.Name;
             ((StringPic)((frmCanvas)Application.OpenForms["frmCanvas"]).figura).Texto = texto_insertar.Text;
             ((StringPic)((frmCanvas)Application.OpenForms["frmCanvas"]).figura).SizeTexto = dlgFuente.Font.Size;
             ((StringPic)((frmCanvas)Application.OpenForms["frmCanvas"]).figura).colorRelleno = colorTexto.Color;

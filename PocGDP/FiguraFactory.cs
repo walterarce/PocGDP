@@ -17,6 +17,8 @@ namespace PocGDP
                     return new Linea();
                 case "StringPic":
                     return new StringPic();
+                case "Imagen":
+                    return new Imagen();
                 default:
                     return new Cuadrado();
             }

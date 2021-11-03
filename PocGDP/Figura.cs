@@ -12,6 +12,7 @@ namespace PocGDP
         public Color colorRelleno { get; set; }
         public Color colorContorno { get; set; }
         public string NombreFigura { get; set; }
+
         public Figura()
         {
             this.rellenosolido = new SolidBrush(colorRelleno);
@@ -39,6 +40,7 @@ namespace PocGDP
         }
 
         public abstract void Dibujar(PictureBox f1);
+
 
         public bool FiguraContenida(int x , int y)
         {

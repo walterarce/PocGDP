@@ -23,6 +23,9 @@ namespace PocGDP
             grp.FillEllipse(new SolidBrush(colorRelleno), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
             grp.DrawEllipse(new Pen(colorContorno, anchoLapicera), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
         }
+
+
+
         public override string ToString()
         {
             return this.GetType().Name;

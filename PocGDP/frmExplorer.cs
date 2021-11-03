@@ -59,5 +59,10 @@ namespace PocGDP
         {
             MessageBox.Show("se dibuja");
         }
+
+        private void panelColorFondo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

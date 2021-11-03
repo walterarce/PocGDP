@@ -87,10 +87,6 @@ namespace PocGDP
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Canvas";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmCanvas_Paint);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmCanvas_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmCanvas_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmCanvas_MouseUp);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
@@ -104,7 +100,7 @@ namespace PocGDP
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelSeleccion;
-        private System.Windows.Forms.PictureBox canvas;
+        public System.Windows.Forms.PictureBox canvas;
     }
 }
 

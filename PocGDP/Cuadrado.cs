@@ -20,6 +20,9 @@ namespace PocGDP
             grp.FillRectangle(new SolidBrush(colorRelleno), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
             grp.DrawRectangle(new Pen(colorContorno, anchoLapicera), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
         }
+
+
+
         public override string ToString()
         {
             return this.GetType().Name;

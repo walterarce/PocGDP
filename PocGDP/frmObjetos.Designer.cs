@@ -116,6 +116,7 @@ namespace PocGDP
             this.panelColorFondo.Name = "panelColorFondo";
             this.panelColorFondo.Size = new System.Drawing.Size(31, 19);
             this.panelColorFondo.TabIndex = 16;
+            this.panelColorFondo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelColorFondo_Paint);
             this.panelColorFondo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelColorFondo_MouseClick);
             // 
             // label7

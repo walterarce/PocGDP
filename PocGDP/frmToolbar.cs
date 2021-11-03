@@ -154,6 +154,22 @@ namespace PocGDP
 
 
         }
+
+        private void btnAddImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog abrirImagen = new OpenFileDialog();
+            abrirImagen.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (abrirImagen.ShowDialog() == DialogResult.OK)
+            {
+                //((frmCanvas)Application.OpenForms["frmCanvas"]).canvas.Image = new Bitmap(abrirImagen.FileName);
+                var imagen = new Imagen();
+                foreach (frmCanvas frm in this.OwnedForms)
+                {
+                    frm.figura = imagen;
+                    ((Imagen)frm.figura).ImagenSelect = new Bitmap(abrirImagen.FileName);
+                }
+            }
+        }
     }
     public class ToolbarEstado
      {
