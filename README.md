@@ -11,22 +11,29 @@ Insertar objetos
 * Cuadrados
 * Texto
 * Imágenes
+
 Los objetos tienen la siguiente característica, excepto imágenes:
+
 * Ancho del trazo
 * Color del trazo
 * Color del relleno, en el caso de que sea cerrada la figura.
+
 Todos los objetos, excepto dibujo a mano alzada, deben poder editarse de la siguiente forma:
+
 * Cambiar tamaño
 * Cambiar ubicación
 * Modificar su forma
 * Modificar su contenido (como por ejemplo color).
+
 La aplicación debe contener como mínimo tres formularios para la interacción del usuario, por ejemplo:
+
 * Ventana de edición gráfica.
 * Ventana para selección del objeto a crear (iconos/botones de cada tipo de objeto a dibujar).
-* Ventana de visualización de objetos (estilo capas), permite seleccionar cualquier objeto para su
-edición.
+* Ventana de visualización de objetos (estilo capas), permite seleccionar cualquier objeto para su edición.
+
 Se debe poder guardar y recuperar todo el trabajo gráfico realizado en un archivo con un formato
 definido por el alumno.
+
 Funcionalidad adicional, poder exportar a un formato imagen (rasterizar).
 Utilizar un abanico de controles variado, no caer en los controles clásicos, como por ejemplo al ingresar
 texto, permitir ingresar fechas por medio de un control que maneje DateTime.
