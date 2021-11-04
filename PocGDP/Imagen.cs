@@ -1,8 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PocGDP
 {
+    [Serializable]
     public class Imagen : Figura, IFigura
     {
         public Image ImagenSelect { get; set; }

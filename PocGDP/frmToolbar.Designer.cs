@@ -89,6 +89,7 @@ namespace PocGDP
             this.btnAbrir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnAbrir.Image = global::PocGDP.Properties.Resources.open_file;
             this.btnAbrir.Name = "btnAbrir";
+            this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
             // 
             // btnColor
             // 

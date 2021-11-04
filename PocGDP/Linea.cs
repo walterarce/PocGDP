@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace PocGDP
 {
+    [Serializable]
     public class Linea : Figura, IFigura
     {
         public Linea() : base()

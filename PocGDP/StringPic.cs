@@ -1,8 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PocGDP
 {
+    [Serializable]
     public class StringPic : Figura, IFigura
     {
         public string Texto { get; set; }
@@ -15,7 +17,6 @@ namespace PocGDP
         }
         public override void Dibujar(PictureBox f1)
         { 
-            
             Graphics grp = f1.CreateGraphics();
             var brocha = new SolidBrush(colorRelleno);
             using (Font myFont = new Font(FuenteTexto, SizeTexto))

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
@@ -175,21 +176,39 @@ namespace PocGDP
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            guardarArchivo.Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP";
+            //guardarArchivo.Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP";
+            guardarArchivo.Filter = "BIN(*.BIN)|*.BIN";
             if (DialogResult.OK == guardarArchivo.ShowDialog())
             {
               
-                BinaryFormatter formater = new BinaryFormatter();
+                IFormatter formater = new BinaryFormatter();
                 var listafiguras = new List<Figura>();
-                Stream stream = new FileStream(guardarArchivo.FileName, FileMode.Append);
+                Stream stream = new FileStream(guardarArchivo.FileName, FileMode.Create);
                 foreach (var figura in ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.Items)
                 {
                     listafiguras.Add(((Figura)figura));
-                    formater.Serialize(stream, ((Figura)figura));
+                    
                 }
 
-                
+                formater.Serialize(stream, listafiguras);
                 stream.Close();
+            }
+        }
+
+        private void btnAbrir_Click(object sender, EventArgs e)
+        {
+            
+            if (DialogResult.OK == abrirArchivo.ShowDialog())
+            {
+                //List<Figura> nuevalistafigura = new List<Figura>();
+                IFormatter formater = new BinaryFormatter();
+                Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open,FileAccess.Read);
+                var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
+                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = nuevalistafigura;
+                stream.Close();
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
             }
         }
     }
