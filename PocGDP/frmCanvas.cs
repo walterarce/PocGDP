@@ -50,7 +50,18 @@ namespace PocGDP
                 figura.Dibujar(canvas);
             }
         }
+        public void Redibujar(Figura figura)
+        {
+            var listafiguras = listafigura;
+            foreach (var figuras in listafiguras)
+                    {
+                if (figuras != figura)
+                    figura.anchoLapicera = 10;
 
+                figuras.Dibujar(canvas);
+            }
+              
+        }
         //private void SelecciondeObjeto(MouseEventArgs e)
         //{
         //    figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
