@@ -30,6 +30,8 @@ namespace PocGDP
 
         public abstract void Dibujar(PictureBox f1);
 
+        public abstract void MoverFigura(PictureBox f1, Punto punto1, Punto punto2);
+
 
         public bool FiguraContenida(int x , int y)
         {

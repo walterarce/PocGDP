@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Linq.Expressions;
+using System.Collections.Generic;
+
 namespace PocGDP
 {
     public partial class frmExplorer : Form
@@ -47,17 +49,17 @@ namespace PocGDP
             {
                 if (((Figura)this.listadeobjetos.SelectedItem) != null)
                 {
-                    if (((frmCanvas)Application.OpenForms["frmCanvas"])==null)
+
+                    if (((frmCanvas)Application.OpenForms["frmCanvas"]) == null)
                     {
                         frmCanvas frmcanvas = new frmCanvas();
                         frmcanvas.Owner = this;
                         frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
-                        frmcanvas.Owner = this;
+                        frmcanvas.Owner = ((frmToolbar)Application.OpenForms["frmToolbar"]);
                         ((frmToolbar)Application.OpenForms["frmToolbar"]).formularios.Add(frmcanvas);
                         frmcanvas.Show();
-                   
+
                     }
-                    
 
                     txtPunto1X.Text = ((Figura)this.listadeobjetos.SelectedItem).punto1.X.ToString();
                     txtPunto1Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto1.Y.ToString();
@@ -66,7 +68,6 @@ namespace PocGDP
                     panelColorFondo.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
                     colorLinea.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorContorno;
                     anchoLinea.Value = ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera;
-                    ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((Figura)this.listadeobjetos.SelectedItem);
                     ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
                 }
             }
@@ -83,6 +84,24 @@ namespace PocGDP
         {
             colorline.ShowDialog();
             colorLinea.BackColor = colorline.Color;
+        }
+
+        private void frmExplorer_Load(object sender, EventArgs e)
+        {
+            if (((frmCanvas)Application.OpenForms["frmCanvas"])!=null)
+            ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            var nuevalistafigura = new List<Figura>();
+            nuevalistafigura = ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura;
+            nuevalistafigura.Remove(((Figura)this.listadeobjetos.SelectedItem));
+
+
+            listadeobjetos.DataSource = null;
+            listadeobjetos.DataSource = nuevalistafigura;
+            ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
         }
     }
 }

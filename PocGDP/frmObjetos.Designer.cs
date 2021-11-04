@@ -49,6 +49,7 @@ namespace PocGDP
             this.btnEdit = new System.Windows.Forms.Button();
             this.colorFondo = new System.Windows.Forms.ColorDialog();
             this.colorline = new System.Windows.Forms.ColorDialog();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anchoLinea)).BeginInit();
@@ -221,7 +222,7 @@ namespace PocGDP
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(100, 458);
+            this.btnEdit.Location = new System.Drawing.Point(102, 458);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(97, 23);
             this.btnEdit.TabIndex = 2;
@@ -233,17 +234,29 @@ namespace PocGDP
             // 
             this.colorFondo.Color = System.Drawing.Color.White;
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(4, 458);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(92, 23);
+            this.btnEliminar.TabIndex = 3;
+            this.btnEliminar.Text = "Eliminar Figura";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // frmExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(209, 493);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEdit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmExplorer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmExplorer";
+            this.Load += new System.EventHandler(this.frmExplorer_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -274,5 +287,6 @@ namespace PocGDP
         public System.Windows.Forms.TrackBar anchoLinea;
         private System.Windows.Forms.Panel colorLinea;
         public System.Windows.Forms.ColorDialog colorline;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

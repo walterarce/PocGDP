@@ -45,23 +45,15 @@ namespace PocGDP
 
         public void Redibujar()
         {
+            Graphics grp = canvas.CreateGraphics();
+            grp.Clear(SystemColors.Control);
+            grp.Dispose();
             foreach (var figura in listafigura)
             {
                 figura.Dibujar(canvas);
             }
         }
-        public void Redibujar(Figura figura)
-        {
-            var listafiguras = listafigura;
-            foreach (var figuras in listafiguras)
-                    {
-                if (figuras != figura)
-                    figura.anchoLapicera = 10;
 
-                figuras.Dibujar(canvas);
-            }
-              
-        }
         //private void SelecciondeObjeto(MouseEventArgs e)
         //{
         //    figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
@@ -165,6 +157,14 @@ namespace PocGDP
             }
         }
 
-        
+        private void frmCanvas_Load(object sender, EventArgs e)
+        {
+            this.Redibujar();
+        }
+
+        private void canvas_Paint(object sender, PaintEventArgs e)
+        {
+            this.Redibujar();
+        }
     }
 }

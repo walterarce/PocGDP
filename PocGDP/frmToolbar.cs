@@ -197,17 +197,10 @@ namespace PocGDP
 
         private void btnAbrir_Click(object sender, EventArgs e)
         {
-            
+            abrirArchivo.Filter = "BIN(*.BIN)|*.BIN";
             if (DialogResult.OK == abrirArchivo.ShowDialog())
             {
-                //List<Figura> nuevalistafigura = new List<Figura>();
-                IFormatter formater = new BinaryFormatter();
-                Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open,FileAccess.Read);
-                var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
-                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
-                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = nuevalistafigura;
-                stream.Close();
-                if (formularios.Count==0)
+                if (formularios.Count == 0)
                 {
                     frmCanvas frmcanvas = new frmCanvas();
                     frmcanvas.Owner = this;
@@ -216,11 +209,18 @@ namespace PocGDP
                     exploradorObjetos = new frmExplorer();
                     formularios.Add(frmcanvas);
                     frmcanvas.Show();
-                    ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
-                }
+                    frmcanvas.Redibujar();
 
+                }
+                //List<Figura> nuevalistafigura = new List<Figura>();
+                IFormatter formater = new BinaryFormatter();
+                Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open,FileAccess.Read);
+                var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
+                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = nuevalistafigura;
+                stream.Close();
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
-                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+
             }
         }
     }

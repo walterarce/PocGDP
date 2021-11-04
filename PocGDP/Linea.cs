@@ -47,5 +47,9 @@ namespace PocGDP
             return this.GetType().Name;
         }
 
+        public override void MoverFigura(PictureBox f1, Punto punto1, Punto punto2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
