@@ -1,5 +1,8 @@
-﻿namespace PocGDP
+﻿using System;
+
+namespace PocGDP
 {
+    [Serializable]
     public struct Punto
     {
         public int X { get; set; }

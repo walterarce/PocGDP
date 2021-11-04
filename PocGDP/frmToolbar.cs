@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace PocGDP
 {
@@ -168,6 +171,23 @@ namespace PocGDP
                     frm.figura = imagen;
                     ((Imagen)frm.figura).ImagenSelect = new Bitmap(abrirImagen.FileName);
                 }
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if(DialogResult.OK == guardarArchivo.ShowDialog())
+            {
+                BinaryFormatter formater = new BinaryFormatter();
+                var listafiguras = new List<Figura>();
+                Stream stream = new FileStream(guardarArchivo.FileName, FileMode.Create);
+                foreach (var figura in ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.Items)
+                {
+                    listafiguras.Add(((Figura)figura));
+                }
+                
+                formater.Serialize(stream, listafiguras);
+                stream.Close();
             }
         }
     }

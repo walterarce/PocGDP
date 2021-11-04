@@ -33,8 +33,8 @@ namespace PocGDP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmToolbar));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.btnAbrir = new System.Windows.Forms.ToolStripButton();
             this.btnColor = new System.Windows.Forms.ToolStripButton();
             this.btnLimpiar = new System.Windows.Forms.ToolStripButton();
             this.btnLinea = new System.Windows.Forms.ToolStripButton();
@@ -45,6 +45,8 @@ namespace PocGDP
             this.btnExit = new System.Windows.Forms.ToolStripButton();
             this.listaimagenes = new System.Windows.Forms.ImageList(this.components);
             this.SeleccionColor = new System.Windows.Forms.ColorDialog();
+            this.guardarArchivo = new System.Windows.Forms.SaveFileDialog();
+            this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,8 +54,8 @@ namespace PocGDP
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNuevo,
-            this.toolStripButton1,
-            this.toolStripButton2,
+            this.btnGuardar,
+            this.btnAbrir,
             this.btnColor,
             this.btnLimpiar,
             this.btnLinea,
@@ -73,19 +75,20 @@ namespace PocGDP
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // toolStripButton1
+            // btnGuardar
             // 
-            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::PocGDP.Properties.Resources.save_file;
-            this.toolStripButton1.Name = "toolStripButton1";
+            resources.ApplyResources(this.btnGuardar, "btnGuardar");
+            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardar.Image = global::PocGDP.Properties.Resources.save_file;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // toolStripButton2
+            // btnAbrir
             // 
-            resources.ApplyResources(this.toolStripButton2, "toolStripButton2");
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::PocGDP.Properties.Resources.open_file;
-            this.toolStripButton2.Name = "toolStripButton2";
+            resources.ApplyResources(this.btnAbrir, "btnAbrir");
+            this.btnAbrir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAbrir.Image = global::PocGDP.Properties.Resources.open_file;
+            this.btnAbrir.Name = "btnAbrir";
             // 
             // btnColor
             // 
@@ -166,6 +169,10 @@ namespace PocGDP
             this.listaimagenes.Images.SetKeyName(8, "seleccione.png");
             this.listaimagenes.Images.SetKeyName(9, "tipografia.png");
             // 
+            // abrirArchivo
+            // 
+            this.abrirArchivo.FileName = "openFileDialog1";
+            // 
             // frmToolbar
             // 
             resources.ApplyResources(this, "$this");
@@ -198,8 +205,10 @@ namespace PocGDP
         private System.Windows.Forms.ColorDialog SeleccionColor;
         private System.Windows.Forms.ToolStripButton btnAddTexto;
         private System.Windows.Forms.ToolStripButton btnAddImagen;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnGuardar;
+        private System.Windows.Forms.ToolStripButton btnAbrir;
         private System.Windows.Forms.ToolStripButton btnCuadrado;
+        private System.Windows.Forms.SaveFileDialog guardarArchivo;
+        private System.Windows.Forms.OpenFileDialog abrirArchivo;
     }
 }

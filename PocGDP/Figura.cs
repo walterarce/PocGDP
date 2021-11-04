@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 namespace PocGDP
 {
+    [Serializable]
     public abstract class Figura
     {
         public Punto punto1 { get; set; }
