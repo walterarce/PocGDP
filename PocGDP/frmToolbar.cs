@@ -12,7 +12,7 @@ namespace PocGDP
     {
         public frmExplorer exploradorObjetos { get; set; }
         List<Figura> figuras = new List<Figura>();
-        List<Form> formularios = new List<Form>();
+        public List<Form> formularios = new List<Form>();
         public Figura figura = null;
         public ToolbarEstado toolbarEstado = new ToolbarEstado();
         public ToolStripButton btnchecked { get; set; }
@@ -207,6 +207,18 @@ namespace PocGDP
                 ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                 ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = nuevalistafigura;
                 stream.Close();
+                if (formularios.Count==0)
+                {
+                    frmCanvas frmcanvas = new frmCanvas();
+                    frmcanvas.Owner = this;
+                    frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
+                    frmcanvas.Owner = this;
+                    exploradorObjetos = new frmExplorer();
+                    formularios.Add(frmcanvas);
+                    frmcanvas.Show();
+                    ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+                }
+
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
             }
