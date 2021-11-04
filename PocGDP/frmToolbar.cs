@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace PocGDP
 {
@@ -176,17 +175,20 @@ namespace PocGDP
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(DialogResult.OK == guardarArchivo.ShowDialog())
+            guardarArchivo.Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP";
+            if (DialogResult.OK == guardarArchivo.ShowDialog())
             {
+              
                 BinaryFormatter formater = new BinaryFormatter();
                 var listafiguras = new List<Figura>();
-                Stream stream = new FileStream(guardarArchivo.FileName, FileMode.Create);
+                Stream stream = new FileStream(guardarArchivo.FileName, FileMode.Append);
                 foreach (var figura in ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.Items)
                 {
                     listafiguras.Add(((Figura)figura));
+                    formater.Serialize(stream, ((Figura)figura));
                 }
+
                 
-                formater.Serialize(stream, listafiguras);
                 stream.Close();
             }
         }
