@@ -32,12 +32,11 @@ namespace PocGDP
             this.listadeobjetos = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.colorLinea = new System.Windows.Forms.Panel();
+            this.anchoLinea = new System.Windows.Forms.TrackBar();
             this.panelColorFondo = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Punto2Y = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,9 +46,12 @@ namespace PocGDP
             this.label2 = new System.Windows.Forms.Label();
             this.txtPunto1X = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.colorFondo = new System.Windows.Forms.ColorDialog();
+            this.colorline = new System.Windows.Forms.ColorDialog();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anchoLinea)).BeginInit();
             this.SuspendLayout();
             // 
             // listadeobjetos
@@ -60,7 +62,6 @@ namespace PocGDP
             this.listadeobjetos.Name = "listadeobjetos";
             this.listadeobjetos.Size = new System.Drawing.Size(209, 199);
             this.listadeobjetos.TabIndex = 0;
-            this.listadeobjetos.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listadeobjetos_DrawItem);
             this.listadeobjetos.SelectedIndexChanged += new System.EventHandler(this.listadeobjetos_SelectedIndexChanged);
             // 
             // panel1
@@ -75,12 +76,11 @@ namespace PocGDP
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnEdit);
+            this.groupBox1.Controls.Add(this.colorLinea);
+            this.groupBox1.Controls.Add(this.anchoLinea);
             this.groupBox1.Controls.Add(this.panelColorFondo);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.Punto2Y);
             this.groupBox1.Controls.Add(this.label4);
@@ -98,63 +98,58 @@ namespace PocGDP
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editar Objeto";
             // 
-            // btnEdit
+            // colorLinea
             // 
-            this.btnEdit.Location = new System.Drawing.Point(87, 208);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(97, 23);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Editar Objeto";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.colorLinea.BackColor = System.Drawing.Color.Black;
+            this.colorLinea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorLinea.Location = new System.Drawing.Point(80, 155);
+            this.colorLinea.Name = "colorLinea";
+            this.colorLinea.Size = new System.Drawing.Size(31, 19);
+            this.colorLinea.TabIndex = 17;
+            this.colorLinea.MouseClick += new System.Windows.Forms.MouseEventHandler(this.colorLinea_MouseClick);
+            // 
+            // anchoLinea
+            // 
+            this.anchoLinea.LargeChange = 1;
+            this.anchoLinea.Location = new System.Drawing.Point(80, 180);
+            this.anchoLinea.Minimum = 1;
+            this.anchoLinea.Name = "anchoLinea";
+            this.anchoLinea.Size = new System.Drawing.Size(104, 45);
+            this.anchoLinea.TabIndex = 0;
+            this.anchoLinea.Value = 1;
             // 
             // panelColorFondo
             // 
             this.panelColorFondo.BackColor = System.Drawing.Color.Black;
             this.panelColorFondo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelColorFondo.Location = new System.Drawing.Point(87, 175);
+            this.panelColorFondo.Location = new System.Drawing.Point(80, 126);
             this.panelColorFondo.Name = "panelColorFondo";
             this.panelColorFondo.Size = new System.Drawing.Size(31, 19);
             this.panelColorFondo.TabIndex = 16;
-            this.panelColorFondo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelColorFondo_Paint);
             this.panelColorFondo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelColorFondo_MouseClick);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 182);
+            this.label7.Location = new System.Drawing.Point(16, 132);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 12;
             this.label7.Text = "Color Fondo";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(80, 149);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 11;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 156);
+            this.label6.Location = new System.Drawing.Point(16, 187);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Grosor Linea";
             // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(80, 123);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 130);
+            this.label5.Location = new System.Drawing.Point(16, 161);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 8;
@@ -224,6 +219,16 @@ namespace PocGDP
             this.label1.TabIndex = 0;
             this.label1.Text = "Punto1X";
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(100, 458);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(97, 23);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "Editar Objeto";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // colorFondo
             // 
             this.colorFondo.Color = System.Drawing.Color.White;
@@ -232,8 +237,9 @@ namespace PocGDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(209, 465);
+            this.ClientSize = new System.Drawing.Size(209, 493);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnEdit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmExplorer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -241,6 +247,7 @@ namespace PocGDP
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anchoLinea)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -252,9 +259,7 @@ namespace PocGDP
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panelColorFondo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox Punto2Y;
         private System.Windows.Forms.Label label4;
@@ -266,5 +271,8 @@ namespace PocGDP
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.ColorDialog colorFondo;
+        public System.Windows.Forms.TrackBar anchoLinea;
+        private System.Windows.Forms.Panel colorLinea;
+        public System.Windows.Forms.ColorDialog colorline;
     }
 }

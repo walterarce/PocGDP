@@ -90,6 +90,7 @@ namespace PocGDP
                 // asimismo le asigno el punto de la punta izquierda superior
                 nuevafigura = (Figura)FiguraFactory.FabricarObjeto(figura.ToString());
                 nuevafigura.colorRelleno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorFondo.Color;
+                nuevafigura.anchoLapicera = ((frmExplorer)Application.OpenForms["frmExplorer"]).anchoLinea.Value;
                 nuevafigura.NombreFigura = nuevafigura.GetType().Name + nuevafigura.GetHashCode();
                 p1_actual = new Punto(e.X, e.Y);
                 nuevafigura.punto1 = p1_actual;
@@ -118,8 +119,8 @@ namespace PocGDP
 
             if (figura != null)
             {
-                nuevafigura.anchoLapicera = 2;
-                nuevafigura.colorContorno = Color.Black;
+            
+                nuevafigura.colorContorno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorline.Color;
                 nuevafigura.punto2 = new Punto(e.X, e.Y);
                 nuevafigura.Dibujar(canvas);
                 listafigura.Add(nuevafigura);

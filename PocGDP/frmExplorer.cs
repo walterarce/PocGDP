@@ -49,20 +49,19 @@ namespace PocGDP
                 Punto2X.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.X.ToString();
                 Punto2Y.Text = ((Figura)this.listadeobjetos.SelectedItem).punto2.Y.ToString();
                 panelColorFondo.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
-                ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((frmCanvas)Application.OpenForms["frmCanvas"]).SeleccionaFigura(((Figura)this.listadeobjetos.SelectedItem).punto1.X, ((Figura)this.listadeobjetos.SelectedItem).punto1.Y);
-               
+                colorLinea.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorContorno;
+                anchoLinea.Value = ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera;
+                //((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((frmCanvas)Application.OpenForms["frmCanvas"]).SeleccionaFigura(((Figura)this.listadeobjetos.SelectedItem).punto1.X, ((Figura)this.listadeobjetos.SelectedItem).punto1.Y);
+
             }
                 
         }
 
-        private void listadeobjetos_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            MessageBox.Show("se dibuja");
-        }
 
-        private void panelColorFondo_Paint(object sender, PaintEventArgs e)
+        private void colorLinea_MouseClick(object sender, MouseEventArgs e)
         {
-
+            colorline.ShowDialog();
+            colorLinea.BackColor = colorline.Color;
         }
     }
 }
