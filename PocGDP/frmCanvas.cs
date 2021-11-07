@@ -8,14 +8,14 @@ namespace PocGDP
     {
         public Figura figuraSeleccionada;
         public Figura nuevafigura;
-        Graphics grp = null;
+        public Estados estado_canvas { get; set; }
         private Punto p1_actual;
         public Figura figura { get; set; } 
         public frmCanvas()
         {
             InitializeComponent();
         }
-        public Figura SeleccionaFigura(int x, int y)
+        public Figura SeleccionaFigura(Punto x, Punto y)
         {
             for (int i = listafigura.Count - 1; i >= 0; i--)
             {
@@ -33,13 +33,6 @@ namespace PocGDP
         private void btnPintar_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            grp.Clear(Color.White);
-            grp.Dispose();
         }
 
 
@@ -54,40 +47,10 @@ namespace PocGDP
             }
         }
 
-        //private void SelecciondeObjeto(MouseEventArgs e)
-        //{
-        //    figuraSeleccionada = SeleccionaFigura(e.X, e.Y);
-        //    if (figuraSeleccionada != null)
-        //    {
-        //        figuraSeleccionada.colorRelleno = Color.Red;
-        //        labelSeleccion.Text = figuraSeleccionada.GetType().ToString();
-        //        foreach (var figura in listafigura)
-        //        {
-        //            if (figura != figuraSeleccionada)
-        //                figura.colorRelleno = Color.White;
-        //        }
-        //        Redibujar();
-        //    }
-        //}
-        //private void DeseleccionObjeto()
-        //{
-        //    if (figuraSeleccionada != null)
-        //    {
-        //        foreach (var figura in listafigura)
-        //        {
-        //            if (figura == figuraSeleccionada)
-        //                figura.colorRelleno = figuraSeleccionada.colorRelleno;
-        //        }
-        //    }
-        //    Redibujar();
-        //}
-
-
-
-
+        //presionando y manteniendo
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if (figura != null)
+            if (figura != null && estado_canvas == Estados.Dibujando)
             {
                 //aca fabrico el objeto que seleccione, y aplico un nombre con su codigo hash de objeto, 
                 // asimismo le asigno el punto de la punta izquierda superior
@@ -108,10 +71,96 @@ namespace PocGDP
                 {
                     ((Imagen)nuevafigura).ImagenSelect = ((Imagen)figura).ImagenSelect;
                 }
-                    
+            }
+            if (figuraSeleccionada != null && estado_canvas == Estados.Escalando)
+            {
+                foreach (var item in listafigura)
+                {
+                    if (item == figuraSeleccionada)
+                    {
+                        item.punto1 = figuraSeleccionada.punto1;
+                        item.Dibujar(canvas);
+                    }
+                }
+
+            }
+            if (figuraSeleccionada != null && estado_canvas == Estados.Moviendo)
+            {
+                var figuraSeleccionadaVarXAnt = figuraSeleccionada.punto1.X;
+                var figuraSeleccionadaVarYAnt = figuraSeleccionada.punto1.Y;
+                figuraSeleccionada.punto1 = new Punto(e.X, e.Y);
+                foreach (var item in listafigura)
+                {
+                    if (item == figuraSeleccionada)
+                    {
+                        item.punto1 = figuraSeleccionada.punto1;
+                        var varX = (e.X + (figuraSeleccionada.punto2.X- figuraSeleccionadaVarXAnt));
+                        var varY = (e.Y + (figuraSeleccionada.punto2.Y- figuraSeleccionadaVarYAnt));
+                        item.punto2 = new Punto(varX, varY);
+                        item.Dibujar(canvas);
+                        this.Redibujar(item);
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+                    }
+                }
             }
         }
 
+        //sin soltar
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
+            lblEstado.Text = this.estado_canvas.ToString();
+            if (e.Button == MouseButtons.Left && estado_canvas == Estados.Dibujando) 
+            {
+                if (nuevafigura is Linea)
+                {
+                    //grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
+                    ((Linea)nuevafigura).AgregarPunto(e.Location);
+                    ((Linea)nuevafigura).Dibujar(canvas);// Dibujo.Add(ln);
+                }
+
+            }
+            if (figuraSeleccionada != null && estado_canvas == Estados.Escalando)
+            {
+                foreach (var item in listafigura)
+                {
+                    if (item == figuraSeleccionada)
+                    {
+                        item.punto1 = figuraSeleccionada.punto1;
+                        item.punto2 = new Punto(e.X, e.Y);
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+                        item.Dibujar(canvas);
+                        this.Redibujar(item);
+                    }
+                }
+            }
+            if (figuraSeleccionada != null && estado_canvas == Estados.Moviendo)
+            {
+                var figuraSeleccionadaVarXAnt = figuraSeleccionada.punto1.X;
+                var figuraSeleccionadaVarYAnt = figuraSeleccionada.punto1.Y;
+                Console.WriteLine($"x{figuraSeleccionadaVarXAnt} y {figuraSeleccionadaVarYAnt}");
+                figuraSeleccionada.punto1 = new Punto(e.X, e.Y);
+                foreach (var item in listafigura)
+                {
+                    if (item == figuraSeleccionada)
+                    {
+                        item.punto1 = figuraSeleccionada.punto1;
+                        var varX = (e.X + (figuraSeleccionada.punto2.X - figuraSeleccionadaVarXAnt));
+                        var varY = (e.Y + (figuraSeleccionada.punto2.Y - figuraSeleccionadaVarYAnt));
+                        item.punto2 = new Punto(varX, varY);
+                        item.Dibujar(canvas);
+                        this.Redibujar(item);
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+                    }
+                }
+            }
+        }
+
+        //soltando mouse
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
             labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
@@ -119,8 +168,8 @@ namespace PocGDP
             // como ser colores de linea y fondo, y ancho , tambien genero un nuevo punto para la esquina inferior derecha
             // lo dibujo en this, es decir en el form que es lo que el metodo espera en la implementacion de cada objeto
             // me lo llevo a una coleccion y asigno la coleccion a la lista visual
-
-            if (figura != null)
+            
+            if (figura != null && estado_canvas == Estados.Dibujando)
             {
             
                 nuevafigura.colorContorno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorline.Color;
@@ -136,27 +185,75 @@ namespace PocGDP
                 }
                 
             }
+            //if (figuraSeleccionada != null && estado_canvas == Estados.Seleccionando)
+            //{
+            //   ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedItem = figuraSeleccionada;
+            //}
+            if (figuraSeleccionada != null && estado_canvas == Estados.Escalando)
+            {
+                figuraSeleccionada.punto2 = new Punto(e.X, e.Y);
+                foreach (var item in listafigura)
+                {
+                    if (item == figuraSeleccionada)
+                    {
+                        item.punto1 = figuraSeleccionada.punto1;
+                        item.punto2 = new Punto(e.X, e.Y);
+                        if (e.Button == MouseButtons.Left)
+                        {
+                            
+                            item.Dibujar(canvas);
+                            ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                            ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+                            this.estado_canvas = Estados.Seleccionando;
+                            this.Redibujar();
+                        }
+                    }
+                }
+                 
+            }
+            if (figuraSeleccionada != null && estado_canvas == Estados.Moviendo)
+            {
+                var figuraSeleccionadaVarXAnt = figuraSeleccionada.punto1.X;
+                var figuraSeleccionadaVarYAnt = figuraSeleccionada.punto1.Y;
+
+                foreach (var item in listafigura)
+                {
+                    if (item == figuraSeleccionada)
+                    {
+                        item.punto1 = figuraSeleccionada.punto1;
+                        var varX = (e.X + (figuraSeleccionada.punto2.X - figuraSeleccionadaVarXAnt));
+                        var varY = (e.Y + (figuraSeleccionada.punto2.Y - figuraSeleccionadaVarYAnt));
+                        item.punto2 = new Punto(varX, varY);
+                        item.Dibujar(canvas);
+                        this.Redibujar(item);
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
+                        this.estado_canvas = Estados.Seleccionando;
+                        this.Redibujar();
+                    }
+                }
+            }
+
         }
 
-        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        
+        private void SelecciondeObjeto(MouseEventArgs e)
         {
-
-            labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
-            if (e.Button == MouseButtons.Left)
+            figuraSeleccionada = SeleccionaFigura(new Punto(e.X,e.Y), new Punto(e.X,e.Y));
+            if (figuraSeleccionada != null)
             {
 
-                //    grp = CanvasPrincipal.ActiveForm.CreateGraphics();
-
-                if (nuevafigura is Linea)
+                foreach (var figura in listafigura)
                 {
-                    //grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
-                    ((Linea)nuevafigura).AgregarPunto(e.Location);
-                    ((Linea)nuevafigura).Dibujar(canvas);// Dibujo.Add(ln);
+                    if (figura == figuraSeleccionada)
+                    {
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedItem = figuraSeleccionada;
+                    }
+                        
                 }
-
+                Redibujar(figuraSeleccionada);
             }
         }
-
         private void frmCanvas_Load(object sender, EventArgs e)
         {
             this.Redibujar();
@@ -166,5 +263,21 @@ namespace PocGDP
         {
             this.Redibujar();
         }
+
+        public void Redibujar(Figura selectedItem)
+        {
+            if (selectedItem != null)
+            {
+                Graphics grp = canvas.CreateGraphics();
+                grp.Clear(SystemColors.Control);
+                grp.Dispose();
+
+                selectedItem.Dibujar(canvas);
+            }
+            
+
+        }
+
+
     }
 }

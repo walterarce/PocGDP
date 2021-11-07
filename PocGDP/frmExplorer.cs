@@ -22,25 +22,30 @@ namespace PocGDP
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            ((Figura)this.listadeobjetos.SelectedItem).punto1 = new Punto(Int16.Parse(txtPunto1X.Text), Int16.Parse(txtPunto1Y.Text));
-            ((Figura)this.listadeobjetos.SelectedItem).punto2 = new Punto(Int16.Parse(Punto2X.Text), Int16.Parse(Punto2Y.Text));
-            ((Figura)this.listadeobjetos.SelectedItem).colorRelleno = panelColorFondo.BackColor;
-            ((Figura)this.listadeobjetos.SelectedItem).colorContorno = colorLinea.BackColor;
-            ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera = anchoLinea.Value;
-
-            foreach (var figuraencontrada in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
+            if (((Figura)this.listadeobjetos.SelectedItem) !=null  && ((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
             {
-                if (figuraencontrada == ((Figura)this.listadeobjetos.SelectedItem))
-                {
-                    figuraencontrada.punto1 = ((Figura)this.listadeobjetos.SelectedItem).punto1;
-                    figuraencontrada.punto2 = ((Figura)this.listadeobjetos.SelectedItem).punto2;
-                    figuraencontrada.colorRelleno = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
-                    figuraencontrada.colorContorno = ((Figura)this.listadeobjetos.SelectedItem).colorContorno;
-                    figuraencontrada.anchoLapicera = ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera;
-                }
-            }
-             ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+                ((Figura)this.listadeobjetos.SelectedItem).punto1 = new Punto(Int16.Parse(txtPunto1X.Text), Int16.Parse(txtPunto1Y.Text));
+                ((Figura)this.listadeobjetos.SelectedItem).punto2 = new Punto(Int16.Parse(Punto2X.Text), Int16.Parse(Punto2Y.Text));
+                ((Figura)this.listadeobjetos.SelectedItem).colorRelleno = panelColorFondo.BackColor;
+                ((Figura)this.listadeobjetos.SelectedItem).colorContorno = colorLinea.BackColor;
+                ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera = anchoLinea.Value;
 
+                foreach (var figuraencontrada in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
+                {
+                    if (figuraencontrada == ((Figura)this.listadeobjetos.SelectedItem))
+                    {
+                        figuraencontrada.punto1 = ((Figura)this.listadeobjetos.SelectedItem).punto1;
+                        figuraencontrada.punto2 = ((Figura)this.listadeobjetos.SelectedItem).punto2;
+                        figuraencontrada.colorRelleno = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
+                        figuraencontrada.colorContorno = ((Figura)this.listadeobjetos.SelectedItem).colorContorno;
+                        figuraencontrada.anchoLapicera = ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera;
+                    }
+                }
+             ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+                btnCommit.Visible = false;
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Seleccionando;
+            }
+            
         }
 
         private void listadeobjetos_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,7 +73,7 @@ namespace PocGDP
                     panelColorFondo.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorRelleno;
                     colorLinea.BackColor = ((Figura)this.listadeobjetos.SelectedItem).colorContorno;
                     anchoLinea.Value = ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera;
-                    ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+                   
                 }
             }
             catch (Exception ex)
@@ -94,14 +99,48 @@ namespace PocGDP
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var nuevalistafigura = new List<Figura>();
-            nuevalistafigura = ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura;
-            nuevalistafigura.Remove(((Figura)this.listadeobjetos.SelectedItem));
+            if (((frmCanvas)Application.OpenForms["frmCanvas"])!= null && this.listadeobjetos.Items.Count >0)
+            {
+                var nuevalistafigura = new List<Figura>();
+                nuevalistafigura = ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura;
+                nuevalistafigura.Remove(((Figura)this.listadeobjetos.SelectedItem));
 
 
-            listadeobjetos.DataSource = null;
-            listadeobjetos.DataSource = nuevalistafigura;
-            ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+                listadeobjetos.DataSource = null;
+                listadeobjetos.DataSource = nuevalistafigura;
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+            }
+           
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (((frmCanvas)Application.OpenForms["frmCanvas"])!= null)
+            {
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar(((Figura)this.listadeobjetos.SelectedItem));
+                btnCommit.Visible = true;
+            }
+           
+        }
+
+        private void btnBajar_Click(object sender, EventArgs e)
+        {
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null && this.listadeobjetos.Items.Count > 0 && this.listadeobjetos.SelectedIndex < this.listadeobjetos.Items.Count-1)
+            {
+                var FiguraAnterior = ((Figura)this.listadeobjetos.SelectedItem);
+                this.listadeobjetos.SelectedIndex = this.listadeobjetos.SelectedIndex + 1;
+                //((Figura)this.listadeobjetos.SelectedItem)
+            }
+        }
+
+        private void btnSubir_Click(object sender, EventArgs e)
+        {
+
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null && this.listadeobjetos.Items.Count > 0 && this.listadeobjetos.SelectedIndex >=0)
+            {
+                this.listadeobjetos.SelectedIndex = this.listadeobjetos.SelectedIndex - 1;
+                
+            }
         }
     }
 }

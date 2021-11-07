@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace PocGDP
 {
     [Serializable]
-    public abstract class Figura
+    public abstract class Figura : ICloneable
     {
         public Punto punto1 { get; set; }
         public Punto punto2 { get; set; }
@@ -33,10 +33,14 @@ namespace PocGDP
         public abstract void MoverFigura(PictureBox f1, Punto punto1, Punto punto2);
 
 
-        public bool FiguraContenida(int x , int y)
+        public bool FiguraContenida(Punto punto1 , Punto punto2)
         {
-            return (x >= punto1.X && x <= punto2.X && y >= punto1.Y && y <= punto2.Y);
+            return (punto1.X >= punto1.X && punto2.X <= punto2.X && punto1.Y >= punto1.Y && punto2.Y <= punto2.Y);
         }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

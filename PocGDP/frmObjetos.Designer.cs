@@ -46,10 +46,13 @@ namespace PocGDP
             this.label2 = new System.Windows.Forms.Label();
             this.txtPunto1X = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnCommit = new System.Windows.Forms.Button();
             this.colorFondo = new System.Windows.Forms.ColorDialog();
             this.colorline = new System.Windows.Forms.ColorDialog();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnBajar = new System.Windows.Forms.Button();
+            this.btnSubir = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anchoLinea)).BeginInit();
@@ -57,28 +60,33 @@ namespace PocGDP
             // 
             // listadeobjetos
             // 
-            this.listadeobjetos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listadeobjetos.Dock = System.Windows.Forms.DockStyle.Left;
             this.listadeobjetos.FormattingEnabled = true;
             this.listadeobjetos.Location = new System.Drawing.Point(0, 0);
             this.listadeobjetos.Name = "listadeobjetos";
-            this.listadeobjetos.Size = new System.Drawing.Size(209, 199);
+            this.listadeobjetos.Size = new System.Drawing.Size(209, 449);
             this.listadeobjetos.TabIndex = 0;
             this.listadeobjetos.SelectedIndexChanged += new System.EventHandler(this.listadeobjetos_SelectedIndexChanged);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnBajar);
+            this.panel1.Controls.Add(this.btnSubir);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.listadeobjetos);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(209, 449);
+            this.panel1.Size = new System.Drawing.Size(424, 449);
             this.panel1.TabIndex = 1;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEliminar);
+            this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.colorLinea);
             this.groupBox1.Controls.Add(this.anchoLinea);
+            this.groupBox1.Controls.Add(this.btnCommit);
             this.groupBox1.Controls.Add(this.panelColorFondo);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -91,10 +99,10 @@ namespace PocGDP
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtPunto1X);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 199);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(209, 157);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(209, 299);
+            this.groupBox1.Size = new System.Drawing.Size(215, 292);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editar Objeto";
@@ -220,15 +228,16 @@ namespace PocGDP
             this.label1.TabIndex = 0;
             this.label1.Text = "Punto1X";
             // 
-            // btnEdit
+            // btnCommit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(102, 458);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(97, 23);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Editar Objeto";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnCommit.Location = new System.Drawing.Point(100, 224);
+            this.btnCommit.Name = "btnCommit";
+            this.btnCommit.Size = new System.Drawing.Size(97, 23);
+            this.btnCommit.TabIndex = 2;
+            this.btnCommit.Text = "Aplicar Cambios";
+            this.btnCommit.UseVisualStyleBackColor = true;
+            this.btnCommit.Visible = false;
+            this.btnCommit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // colorFondo
             // 
@@ -236,7 +245,7 @@ namespace PocGDP
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(4, 458);
+            this.btnEliminar.Location = new System.Drawing.Point(6, 253);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(92, 23);
             this.btnEliminar.TabIndex = 3;
@@ -244,14 +253,42 @@ namespace PocGDP
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(6, 224);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(88, 23);
+            this.btnEditar.TabIndex = 18;
+            this.btnEditar.Text = "Editar Figura";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnBajar
+            // 
+            this.btnBajar.Image = global::PocGDP.Properties.Resources.down;
+            this.btnBajar.Location = new System.Drawing.Point(210, 74);
+            this.btnBajar.Name = "btnBajar";
+            this.btnBajar.Size = new System.Drawing.Size(46, 79);
+            this.btnBajar.TabIndex = 4;
+            this.btnBajar.UseVisualStyleBackColor = true;
+            this.btnBajar.Click += new System.EventHandler(this.btnBajar_Click);
+            // 
+            // btnSubir
+            // 
+            this.btnSubir.Image = global::PocGDP.Properties.Resources.forward;
+            this.btnSubir.Location = new System.Drawing.Point(210, 5);
+            this.btnSubir.Name = "btnSubir";
+            this.btnSubir.Size = new System.Drawing.Size(46, 72);
+            this.btnSubir.TabIndex = 4;
+            this.btnSubir.UseVisualStyleBackColor = true;
+            this.btnSubir.Click += new System.EventHandler(this.btnSubir_Click);
+            // 
             // frmExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(209, 493);
-            this.Controls.Add(this.btnEliminar);
+            this.ClientSize = new System.Drawing.Size(424, 450);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnEdit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmExplorer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -282,11 +319,14 @@ namespace PocGDP
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPunto1X;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnCommit;
         public System.Windows.Forms.ColorDialog colorFondo;
         public System.Windows.Forms.TrackBar anchoLinea;
         private System.Windows.Forms.Panel colorLinea;
         public System.Windows.Forms.ColorDialog colorline;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnBajar;
+        private System.Windows.Forms.Button btnSubir;
     }
 }

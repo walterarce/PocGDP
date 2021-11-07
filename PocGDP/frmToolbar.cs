@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -20,15 +21,7 @@ namespace PocGDP
         {
             InitializeComponent();
         }
-        private Figura SeleccionaFigura(int x, int y)
-        {
-            for (int i = figuras.Count - 1; i >= 0; i--)
-            {
-                if (figuras[i].FiguraContenida(x, y))
-                    return figuras[i];
-            }
-            return null;
-        }
+      
        
        
        
@@ -57,24 +50,32 @@ namespace PocGDP
 
         private void btnCirculo_Click(object sender, EventArgs e)
         {
-       
-            var circuloseleccionado= new Circulo();
-            foreach (frmCanvas frm in this.OwnedForms)
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
             {
-                frm.figura = circuloseleccionado;
+                var circuloseleccionado = new Circulo();
+                foreach (frmCanvas frm in this.OwnedForms)
+                {
+                    frm.figura = circuloseleccionado;
+                }
+              ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Dibujando;
             }
+               
         }
 
 
 
         private void btnCuadrado_Click(object sender, EventArgs e)
         {
-            var cuadradoseleccionado = new Cuadrado();
-            foreach (frmCanvas frm in this.OwnedForms)
+            if (((frmCanvas)Application.OpenForms["frmCanvas"])!=null)
             {
-                frm.figura = cuadradoseleccionado;
+                var cuadradoseleccionado = new Cuadrado();
+                foreach (frmCanvas frm in this.OwnedForms)
+                {
+                    frm.figura = cuadradoseleccionado;
+                }
+                 ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Dibujando;
             }
-        
+            
         }
 
         private void btnSeleccion_Click(object sender, EventArgs e)
@@ -136,24 +137,36 @@ namespace PocGDP
 
         private void btnLinea_Click(object sender, EventArgs e)
         {
-            var lineaseleccionada = new Linea();
-            foreach (frmCanvas frm in this.OwnedForms)
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
             {
-                frm.figura = lineaseleccionada;
+                var lineaseleccionada = new Linea();
+                foreach (frmCanvas frm in this.OwnedForms)
+                {
+                    frm.figura = lineaseleccionada;
+                }
+              ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Dibujando;
             }
+              
         }
 
         private void btnAddTexto_Click(object sender, EventArgs e)
         {
-            var texto = new StringPic();
-            foreach (frmCanvas frm in this.OwnedForms)
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
             {
-                frm.figura = texto;
+                var texto = new StringPic();
+                foreach (frmCanvas frm in this.OwnedForms)
+                {
+                    frm.figura = texto;
+                }
+
+                frmTexto textopic = new frmTexto();
+                textopic.ShowDialog();
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Dibujando;
             }
-
-            frmTexto textopic = new frmTexto();
-            textopic.ShowDialog();
-
+              else
+            {
+                MessageBox.Show("Debe tener un area de trabajo Canvas para utilizar herramientas...");
+            }
 
 
         }
@@ -164,19 +177,26 @@ namespace PocGDP
             abrirImagen.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
             if (abrirImagen.ShowDialog() == DialogResult.OK)
             {
-                //((frmCanvas)Application.OpenForms["frmCanvas"]).canvas.Image = new Bitmap(abrirImagen.FileName);
-                var imagen = new Imagen();
-                foreach (frmCanvas frm in this.OwnedForms)
+                if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
+                { 
+
+                    var imagen = new Imagen();
+                    foreach (frmCanvas frm in this.OwnedForms)
+                    {
+                        frm.figura = imagen;
+                        ((Imagen)frm.figura).ImagenSelect = new Bitmap(abrirImagen.FileName);
+                    }
+                  ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Dibujando;
+                }
+                else
                 {
-                    frm.figura = imagen;
-                    ((Imagen)frm.figura).ImagenSelect = new Bitmap(abrirImagen.FileName);
+                    MessageBox.Show("Debe tener un area de trabajo Canvas para utilizar herramientas...");
                 }
             }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //guardarArchivo.Filter = "JPEG(*.JPG)|*.JPG|BMP(*.BMP)|*.BMP";
             guardarArchivo.Filter = "BIN(*.BIN)|*.BIN";
             if (DialogResult.OK == guardarArchivo.ShowDialog())
             {
@@ -212,7 +232,6 @@ namespace PocGDP
                     frmcanvas.Redibujar();
 
                 }
-                //List<Figura> nuevalistafigura = new List<Figura>();
                 IFormatter formater = new BinaryFormatter();
                 Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open,FileAccess.Read);
                 var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
@@ -221,6 +240,37 @@ namespace PocGDP
                 stream.Close();
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
 
+            }
+        }
+
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
+            {
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Seleccionando;
+            }
+            
+        }
+
+        private void btnEscalar_Click(object sender, EventArgs e)
+        {
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
+            {
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((Figura)((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedItem);
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Escalando;
+
+            }
+
+        }
+
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+
+            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
+            {
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).figuraSeleccionada = ((Figura)((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedItem);
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Moviendo;
             }
         }
     }

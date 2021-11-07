@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Circulo.cs" />
     <Compile Include="Cuadrado.cs" />
+    <Compile Include="Estados.cs" />
     <Compile Include="Figura.cs" />
     <Compile Include="frmCanvas.cs">
       <SubType>Form</SubType>
@@ -230,6 +231,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\retrato1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addtext1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seleccione1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cambiar-el-tamano1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moverse1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

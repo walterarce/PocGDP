@@ -92,12 +92,13 @@ namespace PocGDP
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 355);
+            this.ControlBox = false;
             this.Controls.Add(this.btnColorFondo);
             this.Controls.Add(this.btnColorTexto);
             this.Controls.Add(this.btnFuente);
             this.Controls.Add(this.btnInsertarText);
             this.Controls.Add(this.texto_insertar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmTexto";
             this.Text = "Insertar Texto...";
             this.ResumeLayout(false);

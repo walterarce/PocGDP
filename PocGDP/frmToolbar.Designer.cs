@@ -32,21 +32,25 @@ namespace PocGDP
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmToolbar));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.listaimagenes = new System.Windows.Forms.ImageList(this.components);
+            this.SeleccionColor = new System.Windows.Forms.ColorDialog();
+            this.guardarArchivo = new System.Windows.Forms.SaveFileDialog();
+            this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
+            this.guardaImagen = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.btnAbrir = new System.Windows.Forms.ToolStripButton();
-            this.btnColor = new System.Windows.Forms.ToolStripButton();
-            this.btnLimpiar = new System.Windows.Forms.ToolStripButton();
             this.btnLinea = new System.Windows.Forms.ToolStripButton();
             this.btnCuadrado = new System.Windows.Forms.ToolStripButton();
             this.btnCirculo = new System.Windows.Forms.ToolStripButton();
             this.btnAddTexto = new System.Windows.Forms.ToolStripButton();
             this.btnAddImagen = new System.Windows.Forms.ToolStripButton();
+            this.btnEscalar = new System.Windows.Forms.ToolStripButton();
+            this.btnMover = new System.Windows.Forms.ToolStripButton();
             this.btnExit = new System.Windows.Forms.ToolStripButton();
-            this.listaimagenes = new System.Windows.Forms.ImageList(this.components);
-            this.SeleccionColor = new System.Windows.Forms.ColorDialog();
-            this.guardarArchivo = new System.Windows.Forms.SaveFileDialog();
-            this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,16 +60,53 @@ namespace PocGDP
             this.btnNuevo,
             this.btnGuardar,
             this.btnAbrir,
-            this.btnColor,
-            this.btnLimpiar,
+            this.toolStripSeparator1,
             this.btnLinea,
             this.btnCuadrado,
             this.btnCirculo,
             this.btnAddTexto,
             this.btnAddImagen,
+            this.toolStripSeparator2,
+            this.btnEscalar,
+            this.btnMover,
+            this.toolStripSeparator3,
             this.btnExit});
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Name = "toolStrip1";
+            // 
+            // listaimagenes
+            // 
+            this.listaimagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("listaimagenes.ImageStream")));
+            this.listaimagenes.TransparentColor = System.Drawing.Color.Transparent;
+            this.listaimagenes.Images.SetKeyName(0, "archivonuevo");
+            this.listaimagenes.Images.SetKeyName(1, "cambiar-el-tamano.png");
+            this.listaimagenes.Images.SetKeyName(2, "formato-de-archivo-psd.png");
+            this.listaimagenes.Images.SetKeyName(3, "lapicera.png");
+            this.listaimagenes.Images.SetKeyName(4, "lata-de-aerosol.png");
+            this.listaimagenes.Images.SetKeyName(5, "moverse.png");
+            this.listaimagenes.Images.SetKeyName(6, "paleta-de-color.png");
+            this.listaimagenes.Images.SetKeyName(7, "retrato.png");
+            this.listaimagenes.Images.SetKeyName(8, "seleccione.png");
+            this.listaimagenes.Images.SetKeyName(9, "tipografia.png");
+            // 
+            // abrirArchivo
+            // 
+            this.abrirArchivo.FileName = "openFileDialog1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // btnNuevo
             // 
@@ -90,21 +131,6 @@ namespace PocGDP
             this.btnAbrir.Image = global::PocGDP.Properties.Resources.open_file;
             this.btnAbrir.Name = "btnAbrir";
             this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
-            // 
-            // btnColor
-            // 
-            resources.ApplyResources(this.btnColor, "btnColor");
-            this.btnColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnColor.Image = global::PocGDP.Properties.Resources.paint_palette;
-            this.btnColor.Name = "btnColor";
-            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
-            // 
-            // btnLimpiar
-            // 
-            resources.ApplyResources(this.btnLimpiar, "btnLimpiar");
-            this.btnLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLimpiar.Image = global::PocGDP.Properties.Resources.cross;
-            this.btnLimpiar.Name = "btnLimpiar";
             // 
             // btnLinea
             // 
@@ -147,6 +173,22 @@ namespace PocGDP
             this.btnAddImagen.Name = "btnAddImagen";
             this.btnAddImagen.Click += new System.EventHandler(this.btnAddImagen_Click);
             // 
+            // btnEscalar
+            // 
+            this.btnEscalar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEscalar.Image = global::PocGDP.Properties.Resources.resize;
+            resources.ApplyResources(this.btnEscalar, "btnEscalar");
+            this.btnEscalar.Name = "btnEscalar";
+            this.btnEscalar.Click += new System.EventHandler(this.btnEscalar_Click);
+            // 
+            // btnMover
+            // 
+            this.btnMover.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnMover.Image = global::PocGDP.Properties.Resources.move;
+            resources.ApplyResources(this.btnMover, "btnMover");
+            this.btnMover.Name = "btnMover";
+            this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
+            // 
             // btnExit
             // 
             resources.ApplyResources(this.btnExit, "btnExit");
@@ -154,25 +196,6 @@ namespace PocGDP
             this.btnExit.Image = global::PocGDP.Properties.Resources.logout;
             this.btnExit.Name = "btnExit";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // listaimagenes
-            // 
-            this.listaimagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("listaimagenes.ImageStream")));
-            this.listaimagenes.TransparentColor = System.Drawing.Color.Transparent;
-            this.listaimagenes.Images.SetKeyName(0, "archivonuevo");
-            this.listaimagenes.Images.SetKeyName(1, "cambiar-el-tamano.png");
-            this.listaimagenes.Images.SetKeyName(2, "formato-de-archivo-psd.png");
-            this.listaimagenes.Images.SetKeyName(3, "lapicera.png");
-            this.listaimagenes.Images.SetKeyName(4, "lata-de-aerosol.png");
-            this.listaimagenes.Images.SetKeyName(5, "moverse.png");
-            this.listaimagenes.Images.SetKeyName(6, "paleta-de-color.png");
-            this.listaimagenes.Images.SetKeyName(7, "retrato.png");
-            this.listaimagenes.Images.SetKeyName(8, "seleccione.png");
-            this.listaimagenes.Images.SetKeyName(9, "tipografia.png");
-            // 
-            // abrirArchivo
-            // 
-            this.abrirArchivo.FileName = "openFileDialog1";
             // 
             // frmToolbar
             // 
@@ -196,8 +219,6 @@ namespace PocGDP
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnColor;
-        private System.Windows.Forms.ToolStripButton btnLimpiar;
         private System.Windows.Forms.ToolStripButton btnLinea;
         private System.Windows.Forms.ToolStripButton btnNuevo;
         public System.Windows.Forms.ToolStripButton btnCirculo;
@@ -211,5 +232,11 @@ namespace PocGDP
         private System.Windows.Forms.ToolStripButton btnCuadrado;
         private System.Windows.Forms.SaveFileDialog guardarArchivo;
         private System.Windows.Forms.OpenFileDialog abrirArchivo;
+        private System.Windows.Forms.ToolStripButton btnEscalar;
+        private System.Windows.Forms.SaveFileDialog guardaImagen;
+        private System.Windows.Forms.ToolStripButton btnMover;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
