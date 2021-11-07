@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Linq.Expressions;
 using System.Collections.Generic;
-
+using System.Windows.Forms;
+using System.Linq;
 namespace PocGDP
 {
     public partial class frmExplorer : Form
@@ -127,9 +125,23 @@ namespace PocGDP
         {
             if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null && this.listadeobjetos.Items.Count > 0 && this.listadeobjetos.SelectedIndex < this.listadeobjetos.Items.Count-1)
             {
-                var FiguraAnterior = ((Figura)this.listadeobjetos.SelectedItem);
-                this.listadeobjetos.SelectedIndex = this.listadeobjetos.SelectedIndex + 1;
-                //((Figura)this.listadeobjetos.SelectedItem)
+              
+                var nuevalistafigura = new List<Figura>();
+                nuevalistafigura.Add(((Figura)this.listadeobjetos.SelectedItem));
+                foreach (var item in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
+                {
+                    if (item != ((Figura)this.listadeobjetos.SelectedItem))
+                    nuevalistafigura.Add(item);
+                }
+                listadeobjetos.DataSource = null;
+                listadeobjetos.DataSource = nuevalistafigura;
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = new List<Figura>();
+                foreach (Figura item in this.listadeobjetos.Items)
+                {
+                    if (item != null)
+                        ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura.Add(item);
+                }
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
             }
         }
 
@@ -138,8 +150,24 @@ namespace PocGDP
 
             if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null && this.listadeobjetos.Items.Count > 0 && this.listadeobjetos.SelectedIndex >=0)
             {
-                this.listadeobjetos.SelectedIndex = this.listadeobjetos.SelectedIndex - 1;
+                var nuevalistafigura = new List<Figura>();
                 
+                foreach (var item in ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura)
+                {
+                    if (item != ((Figura)this.listadeobjetos.SelectedItem))
+                        nuevalistafigura.Add(item);
+                }
+                nuevalistafigura.Add(((Figura)this.listadeobjetos.SelectedItem));
+                listadeobjetos.DataSource = null;
+                listadeobjetos.DataSource = nuevalistafigura;
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = new List<Figura>();
+                foreach (Figura item in this.listadeobjetos.Items)
+                {
+                    if (item != null)
+                    ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura.Add(item);
+                }
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+
             }
         }
     }

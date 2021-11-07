@@ -228,18 +228,18 @@ namespace PocGDP
                     frmcanvas.Owner = this;
                     exploradorObjetos = new frmExplorer();
                     formularios.Add(frmcanvas);
+                    frmcanvas.Text = abrirArchivo.FileName;
                     frmcanvas.Show();
-                    frmcanvas.Redibujar();
-
                 }
                 IFormatter formater = new BinaryFormatter();
                 Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open,FileAccess.Read);
                 var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
-                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
-                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = nuevalistafigura;
-                stream.Close();
                 ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
-
+                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura;
+                stream.Close();
+               
+                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
             }
         }
 
