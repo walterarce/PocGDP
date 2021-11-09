@@ -53,16 +53,16 @@ namespace PocGDP
                 if (((Figura)this.listadeobjetos.SelectedItem) != null)
                 {
 
-                    if (((frmCanvas)Application.OpenForms["frmCanvas"]) == null)
-                    {
-                        frmCanvas frmcanvas = new frmCanvas();
-                        frmcanvas.Owner = this;
-                        frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
-                        frmcanvas.Owner = ((frmToolbar)Application.OpenForms["frmToolbar"]);
-                        ((frmToolbar)Application.OpenForms["frmToolbar"]).formularios.Add(frmcanvas);
-                        frmcanvas.Show();
+                    //if (((frmCanvas)Application.OpenForms["frmCanvas"]) == null)
+                    //{
+                    //    frmCanvas frmcanvas = new frmCanvas();
+                    //    frmcanvas.Owner = this;
+                    //    frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
+                    //    frmcanvas.Owner = ((frmToolbar)Application.OpenForms["frmToolbar"]);
+                    //    ((frmToolbar)Application.OpenForms["frmToolbar"]).formularios.Add(frmcanvas);
+                    //    frmcanvas.Show();
 
-                    }
+                    //}
                     lblNombre.Text = ((Figura)this.listadeobjetos.SelectedItem).NombreFigura;
                     lblAnchoLapicera.Text = ((Figura)this.listadeobjetos.SelectedItem).anchoLapicera.ToString();
                     lblTipoObjeto.Text = ((Figura)this.listadeobjetos.SelectedItem).GetType().ToString();

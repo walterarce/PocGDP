@@ -220,26 +220,44 @@ namespace PocGDP
             abrirArchivo.Filter = "BIN(*.BIN)|*.BIN";
             if (DialogResult.OK == abrirArchivo.ShowDialog())
             {
+                IFormatter formater = new BinaryFormatter();
+                Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open, FileAccess.Read);
+                var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
                 if (formularios.Count == 0)
                 {
                     frmCanvas frmcanvas = new frmCanvas();
                     frmcanvas.Owner = this;
                     frmcanvas.Text = "New Canvas_" + this.OwnedForms.Length.ToString();
-                    frmcanvas.Owner = this;
-                    exploradorObjetos = new frmExplorer();
                     formularios.Add(frmcanvas);
                     frmcanvas.Text = abrirArchivo.FileName;
+                    frmcanvas.listafigura = nuevalistafigura;
+
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = nuevalistafigura;
+                   
                     frmcanvas.Show();
+
+
                 }
-                IFormatter formater = new BinaryFormatter();
-                Stream stream = new FileStream(abrirArchivo.FileName, FileMode.Open,FileAccess.Read);
-                var nuevalistafigura = (List<Figura>)formater.Deserialize(stream);
-                ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
-                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
-                ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura;
+                else
+                {
+                    try
+                    {
+                        ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura = nuevalistafigura;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
+                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = ((frmCanvas)Application.OpenForms["frmCanvas"]).listafigura;
+                        ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                    
+                }
+                
                 stream.Close();
-               
-                ((frmCanvas)Application.OpenForms["frmCanvas"]).Redibujar();
+ 
             }
         }
 

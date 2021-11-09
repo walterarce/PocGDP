@@ -29,15 +29,6 @@ namespace PocGDP
             return this.GetType().Name; 
         }
 
-        public override void MoverFigura(PictureBox f1, Punto punto1, Punto punto2)
-        {
-            Graphics grp = f1.CreateGraphics();
-            var brocha = new SolidBrush(colorRelleno);
-            using (Font myFont = new Font(FuenteTexto, SizeTexto))
-            {
-                grp.Clear(SystemColors.Control);
-                grp.DrawString(Texto, myFont, brocha, punto1.X, punto1.Y);
-            }
-        }
+        
     }
 }

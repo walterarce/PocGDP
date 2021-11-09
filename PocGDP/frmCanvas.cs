@@ -40,11 +40,12 @@ namespace PocGDP
         {
             Graphics grp = canvas.CreateGraphics();
             grp.Clear(SystemColors.Control);
-            grp.Dispose();
+           
             foreach (var figura in listafigura)
             {
                 figura.Dibujar(canvas);
             }
+            grp.Dispose();
         }
 
         //presionando y manteniendo
@@ -133,7 +134,7 @@ namespace PocGDP
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
                         item.Dibujar(canvas);
-                        this.Redibujar(item);
+                        this.Redibujar();
                     }
                 }
             }
@@ -185,10 +186,7 @@ namespace PocGDP
                 }
                 
             }
-            //if (figuraSeleccionada != null && estado_canvas == Estados.Seleccionando)
-            //{
-            //   ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedItem = figuraSeleccionada;
-            //}
+
             if (figuraSeleccionada != null && estado_canvas == Estados.Escalando)
             {
                 figuraSeleccionada.punto2 = new Punto(e.X, e.Y);
@@ -237,26 +235,9 @@ namespace PocGDP
         }
 
         
-        private void SelecciondeObjeto(MouseEventArgs e)
-        {
-            figuraSeleccionada = SeleccionaFigura(new Punto(e.X,e.Y), new Punto(e.X,e.Y));
-            if (figuraSeleccionada != null)
-            {
-
-                foreach (var figura in listafigura)
-                {
-                    if (figura == figuraSeleccionada)
-                    {
-                        ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedItem = figuraSeleccionada;
-                    }
-                        
-                }
-                Redibujar(figuraSeleccionada);
-            }
-        }
         private void frmCanvas_Load(object sender, EventArgs e)
         {
-            this.Redibujar();
+           
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e)
@@ -270,14 +251,10 @@ namespace PocGDP
             {
                 Graphics grp = canvas.CreateGraphics();
                 grp.Clear(SystemColors.Control);
-                grp.Dispose();
-
-                selectedItem.Dibujar(canvas);
-            }
             
-
+                selectedItem.Dibujar(canvas);
+                grp.Dispose();
+            }
         }
-
-
     }
 }

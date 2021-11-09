@@ -19,13 +19,9 @@ namespace PocGDP
         public override void Dibujar(PictureBox f1)
         {
             Graphics grp = f1.CreateGraphics();
+            
             grp.FillRectangle(new SolidBrush(colorRelleno), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
             grp.DrawRectangle(new Pen(colorContorno, anchoLapicera), this.punto1.X, this.punto1.Y, this.punto2.X - this.punto1.X, this.punto2.Y - this.punto1.Y);
-        }
-
-        public override void MoverFigura(PictureBox f1, Punto punto1, Punto punto2)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

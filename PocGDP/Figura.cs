@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace PocGDP
 {
     [Serializable]
-    public abstract class Figura : ICloneable
+    public abstract class Figura
     {
         public Punto punto1 { get; set; }
         public Punto punto2 { get; set; }
@@ -30,7 +29,6 @@ namespace PocGDP
 
         public abstract void Dibujar(PictureBox f1);
 
-        public abstract void MoverFigura(PictureBox f1, Punto punto1, Punto punto2);
 
 
         public bool FiguraContenida(Punto punto1 , Punto punto2)
@@ -38,9 +36,6 @@ namespace PocGDP
             return (punto1.X >= punto1.X && punto2.X <= punto2.X && punto1.Y >= punto1.Y && punto2.Y <= punto2.Y);
         }
 
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
+
     }
 }
