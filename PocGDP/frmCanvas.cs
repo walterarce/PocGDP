@@ -152,7 +152,7 @@ namespace PocGDP
                         var varY = (e.Y + (figuraSeleccionada.punto2.Y - figuraSeleccionadaVarYAnt));
                         item.punto2 = new Punto(varX, varY);
                         item.Dibujar(canvas);
-                        this.Redibujar(item);
+                        this.Redibujar();
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
                     }

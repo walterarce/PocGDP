@@ -256,5 +256,11 @@
   <ItemGroup>
     <None Include="Resources\down.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\send-to-back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\send-to-front-button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

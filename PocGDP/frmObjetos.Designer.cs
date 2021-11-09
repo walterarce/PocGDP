@@ -32,8 +32,11 @@ namespace PocGDP
             this.listadeobjetos = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.colorLinea = new System.Windows.Forms.Panel();
             this.anchoLinea = new System.Windows.Forms.TrackBar();
+            this.btnCommit = new System.Windows.Forms.Button();
             this.panelColorFondo = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,16 +49,23 @@ namespace PocGDP
             this.label2 = new System.Windows.Forms.Label();
             this.txtPunto1X = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCommit = new System.Windows.Forms.Button();
             this.colorFondo = new System.Windows.Forms.ColorDialog();
             this.colorline = new System.Windows.Forms.ColorDialog();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnBajar = new System.Windows.Forms.Button();
-            this.btnSubir = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnEnviarAtras = new System.Windows.Forms.ToolStripButton();
+            this.btnEnviarAlFrente = new System.Windows.Forms.ToolStripButton();
+            this.grpBox1 = new System.Windows.Forms.GroupBox();
+            this.lblNombreTitulo = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblAnchoLapiceraTitulo = new System.Windows.Forms.Label();
+            this.lblAnchoLapicera = new System.Windows.Forms.Label();
+            this.lblObjectTypeTitle = new System.Windows.Forms.Label();
+            this.lblTipoObjeto = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anchoLinea)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.grpBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listadeobjetos
@@ -70,8 +80,8 @@ namespace PocGDP
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnBajar);
-            this.panel1.Controls.Add(this.btnSubir);
+            this.panel1.Controls.Add(this.grpBox1);
+            this.panel1.Controls.Add(this.toolStrip1);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.listadeobjetos);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -107,6 +117,30 @@ namespace PocGDP
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editar Objeto";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Red;
+            this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Location = new System.Drawing.Point(6, 257);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(88, 23);
+            this.btnEliminar.TabIndex = 3;
+            this.btnEliminar.Text = "Eliminar Figura";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Location = new System.Drawing.Point(6, 231);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(88, 23);
+            this.btnEditar.TabIndex = 18;
+            this.btnEditar.Text = "Editar Figura";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // colorLinea
             // 
             this.colorLinea.BackColor = System.Drawing.Color.Black;
@@ -126,6 +160,19 @@ namespace PocGDP
             this.anchoLinea.Size = new System.Drawing.Size(104, 45);
             this.anchoLinea.TabIndex = 0;
             this.anchoLinea.Value = 1;
+            // 
+            // btnCommit
+            // 
+            this.btnCommit.BackColor = System.Drawing.Color.Yellow;
+            this.btnCommit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCommit.Location = new System.Drawing.Point(100, 231);
+            this.btnCommit.Name = "btnCommit";
+            this.btnCommit.Size = new System.Drawing.Size(97, 23);
+            this.btnCommit.TabIndex = 2;
+            this.btnCommit.Text = "Aplicar Cambios";
+            this.btnCommit.UseVisualStyleBackColor = false;
+            this.btnCommit.Visible = false;
+            this.btnCommit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // panelColorFondo
             // 
@@ -228,60 +275,111 @@ namespace PocGDP
             this.label1.TabIndex = 0;
             this.label1.Text = "Punto1X";
             // 
-            // btnCommit
-            // 
-            this.btnCommit.Location = new System.Drawing.Point(100, 224);
-            this.btnCommit.Name = "btnCommit";
-            this.btnCommit.Size = new System.Drawing.Size(97, 23);
-            this.btnCommit.TabIndex = 2;
-            this.btnCommit.Text = "Aplicar Cambios";
-            this.btnCommit.UseVisualStyleBackColor = true;
-            this.btnCommit.Visible = false;
-            this.btnCommit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // colorFondo
             // 
             this.colorFondo.Color = System.Drawing.Color.White;
             // 
-            // btnEliminar
+            // toolStrip1
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(6, 253);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(92, 23);
-            this.btnEliminar.TabIndex = 3;
-            this.btnEliminar.Text = "Eliminar Figura";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnEnviarAtras,
+            this.btnEnviarAlFrente});
+            this.toolStrip1.Location = new System.Drawing.Point(209, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(24, 157);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnEditar
+            // btnEnviarAtras
             // 
-            this.btnEditar.Location = new System.Drawing.Point(6, 224);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(88, 23);
-            this.btnEditar.TabIndex = 18;
-            this.btnEditar.Text = "Editar Figura";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.btnEnviarAtras.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEnviarAtras.Image = global::PocGDP.Properties.Resources.send_to_back;
+            this.btnEnviarAtras.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEnviarAtras.Name = "btnEnviarAtras";
+            this.btnEnviarAtras.Size = new System.Drawing.Size(21, 20);
+            this.btnEnviarAtras.Text = "Lleva atras de todo la figura seleccionada";
+            this.btnEnviarAtras.Click += new System.EventHandler(this.btnEnviarAtras_Click);
             // 
-            // btnBajar
+            // btnEnviarAlFrente
             // 
-            this.btnBajar.Image = global::PocGDP.Properties.Resources.down;
-            this.btnBajar.Location = new System.Drawing.Point(210, 74);
-            this.btnBajar.Name = "btnBajar";
-            this.btnBajar.Size = new System.Drawing.Size(46, 79);
-            this.btnBajar.TabIndex = 4;
-            this.btnBajar.UseVisualStyleBackColor = true;
-            this.btnBajar.Click += new System.EventHandler(this.btnBajar_Click);
+            this.btnEnviarAlFrente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEnviarAlFrente.Image = global::PocGDP.Properties.Resources.send_to_front_button;
+            this.btnEnviarAlFrente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEnviarAlFrente.Name = "btnEnviarAlFrente";
+            this.btnEnviarAlFrente.Size = new System.Drawing.Size(21, 20);
+            this.btnEnviarAlFrente.Text = "Lleva al frente la figura seleccionada";
+            this.btnEnviarAlFrente.Click += new System.EventHandler(this.btnEnviarAlFrente_Click);
             // 
-            // btnSubir
+            // grpBox1
             // 
-            this.btnSubir.Image = global::PocGDP.Properties.Resources.forward;
-            this.btnSubir.Location = new System.Drawing.Point(210, 5);
-            this.btnSubir.Name = "btnSubir";
-            this.btnSubir.Size = new System.Drawing.Size(46, 72);
-            this.btnSubir.TabIndex = 4;
-            this.btnSubir.UseVisualStyleBackColor = true;
-            this.btnSubir.Click += new System.EventHandler(this.btnSubir_Click);
+            this.grpBox1.Controls.Add(this.lblTipoObjeto);
+            this.grpBox1.Controls.Add(this.lblObjectTypeTitle);
+            this.grpBox1.Controls.Add(this.lblAnchoLapicera);
+            this.grpBox1.Controls.Add(this.lblAnchoLapiceraTitulo);
+            this.grpBox1.Controls.Add(this.lblNombre);
+            this.grpBox1.Controls.Add(this.lblNombreTitulo);
+            this.grpBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.grpBox1.Location = new System.Drawing.Point(233, 0);
+            this.grpBox1.Name = "grpBox1";
+            this.grpBox1.Size = new System.Drawing.Size(200, 157);
+            this.grpBox1.TabIndex = 6;
+            this.grpBox1.TabStop = false;
+            this.grpBox1.Text = "Info Figura";
+            // 
+            // lblNombreTitulo
+            // 
+            this.lblNombreTitulo.AutoSize = true;
+            this.lblNombreTitulo.Location = new System.Drawing.Point(4, 20);
+            this.lblNombreTitulo.Name = "lblNombreTitulo";
+            this.lblNombreTitulo.Size = new System.Drawing.Size(47, 13);
+            this.lblNombreTitulo.TabIndex = 0;
+            this.lblNombreTitulo.Text = "Nombre:";
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(57, 20);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(10, 13);
+            this.lblNombre.TabIndex = 1;
+            this.lblNombre.Text = " ";
+            // 
+            // lblAnchoLapiceraTitulo
+            // 
+            this.lblAnchoLapiceraTitulo.AutoSize = true;
+            this.lblAnchoLapiceraTitulo.Location = new System.Drawing.Point(4, 33);
+            this.lblAnchoLapiceraTitulo.Name = "lblAnchoLapiceraTitulo";
+            this.lblAnchoLapiceraTitulo.Size = new System.Drawing.Size(70, 13);
+            this.lblAnchoLapiceraTitulo.TabIndex = 2;
+            this.lblAnchoLapiceraTitulo.Text = "Grosor Linea:";
+            // 
+            // lblAnchoLapicera
+            // 
+            this.lblAnchoLapicera.AutoSize = true;
+            this.lblAnchoLapicera.Location = new System.Drawing.Point(73, 33);
+            this.lblAnchoLapicera.Name = "lblAnchoLapicera";
+            this.lblAnchoLapicera.Size = new System.Drawing.Size(10, 13);
+            this.lblAnchoLapicera.TabIndex = 3;
+            this.lblAnchoLapicera.Text = " ";
+            // 
+            // lblObjectTypeTitle
+            // 
+            this.lblObjectTypeTitle.AutoSize = true;
+            this.lblObjectTypeTitle.Location = new System.Drawing.Point(4, 46);
+            this.lblObjectTypeTitle.Name = "lblObjectTypeTitle";
+            this.lblObjectTypeTitle.Size = new System.Drawing.Size(80, 13);
+            this.lblObjectTypeTitle.TabIndex = 4;
+            this.lblObjectTypeTitle.Text = "Tipo de Objeto:";
+            // 
+            // lblTipoObjeto
+            // 
+            this.lblTipoObjeto.AutoSize = true;
+            this.lblTipoObjeto.Location = new System.Drawing.Point(90, 46);
+            this.lblTipoObjeto.Name = "lblTipoObjeto";
+            this.lblTipoObjeto.Size = new System.Drawing.Size(10, 13);
+            this.lblTipoObjeto.TabIndex = 5;
+            this.lblTipoObjeto.Text = " ";
             // 
             // frmExplorer
             // 
@@ -295,9 +393,14 @@ namespace PocGDP
             this.Text = "frmExplorer";
             this.Load += new System.EventHandler(this.frmExplorer_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anchoLinea)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.grpBox1.ResumeLayout(false);
+            this.grpBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -326,7 +429,15 @@ namespace PocGDP
         public System.Windows.Forms.ColorDialog colorline;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnBajar;
-        private System.Windows.Forms.Button btnSubir;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnEnviarAtras;
+        private System.Windows.Forms.ToolStripButton btnEnviarAlFrente;
+        private System.Windows.Forms.GroupBox grpBox1;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblNombreTitulo;
+        private System.Windows.Forms.Label lblAnchoLapicera;
+        private System.Windows.Forms.Label lblAnchoLapiceraTitulo;
+        private System.Windows.Forms.Label lblObjectTypeTitle;
+        private System.Windows.Forms.Label lblTipoObjeto;
     }
 }
