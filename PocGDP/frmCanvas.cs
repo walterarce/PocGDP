@@ -10,7 +10,8 @@ namespace PocGDP
         public Figura nuevafigura;
         public Estados estado_canvas { get; set; }
         private Punto p1_actual;
-        public Figura figura { get; set; } 
+        Point inicial = new Point();
+        public Figura figura { get; set; }
         public frmCanvas()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace PocGDP
         {
             Graphics grp = canvas.CreateGraphics();
             grp.Clear(SystemColors.Control);
-           
+
             foreach (var figura in listafigura)
             {
                 figura.Dibujar(canvas);
@@ -72,6 +73,11 @@ namespace PocGDP
                 {
                     ((Imagen)nuevafigura).ImagenSelect = ((Imagen)figura).ImagenSelect;
                 }
+                if (nuevafigura is Painter)
+                {
+                    inicial = e.Location;
+                   // ((Painter)nuevafigura).PointsCollection.Add(new Point(e.X, e.Y));
+                }
             }
             if (figuraSeleccionada != null && estado_canvas == Estados.Escalando)
             {
@@ -95,11 +101,11 @@ namespace PocGDP
                     if (item == figuraSeleccionada)
                     {
                         item.punto1 = figuraSeleccionada.punto1;
-                        var varX = (e.X + (figuraSeleccionada.punto2.X- figuraSeleccionadaVarXAnt));
-                        var varY = (e.Y + (figuraSeleccionada.punto2.Y- figuraSeleccionadaVarYAnt));
+                        var varX = (e.X + (figuraSeleccionada.punto2.X - figuraSeleccionadaVarXAnt));
+                        var varY = (e.Y + (figuraSeleccionada.punto2.Y - figuraSeleccionadaVarYAnt));
                         item.punto2 = new Punto(varX, varY);
                         item.Dibujar(canvas);
-                        this.Redibujar(item);
+                       // this.Redibujar(item);
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
                     }
@@ -113,13 +119,22 @@ namespace PocGDP
 
             labelSeleccion.Text = String.Format($"x:{e.X}, y:{e.Y}");
             lblEstado.Text = this.estado_canvas.ToString();
-            if (e.Button == MouseButtons.Left && estado_canvas == Estados.Dibujando) 
+            if (e.Button == MouseButtons.Left && estado_canvas == Estados.Dibujando)
             {
                 if (nuevafigura is Linea)
                 {
-                    //grp.DrawLine(new Pen(ColorLinea, AnchoLinea), inicial, e.Location);
-                    ((Linea)nuevafigura).AgregarPunto(e.Location);
-                    ((Linea)nuevafigura).Dibujar(canvas);// Dibujo.Add(ln);
+                    ((Linea)nuevafigura).Dibujar(canvas);
+                }
+                if (nuevafigura is Painter)
+                {
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        ((Painter)nuevafigura).inicial = e.Location;
+                        ((Painter)nuevafigura).PointsCollection.Add(e.Location);
+                        ((Painter)nuevafigura).Dibujar(canvas);
+                        ((Painter)nuevafigura).inicial = e.Location;
+                    }
+
                 }
 
             }
@@ -134,7 +149,7 @@ namespace PocGDP
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
                         item.Dibujar(canvas);
-                        this.Redibujar();
+                        this.Redibujar(item);
                     }
                 }
             }
@@ -153,7 +168,7 @@ namespace PocGDP
                         var varY = (e.Y + (figuraSeleccionada.punto2.Y - figuraSeleccionadaVarYAnt));
                         item.punto2 = new Punto(varX, varY);
                         item.Dibujar(canvas);
-                        this.Redibujar();
+                        this.Redibujar(item);
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                         ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
                     }
@@ -169,10 +184,10 @@ namespace PocGDP
             // como ser colores de linea y fondo, y ancho , tambien genero un nuevo punto para la esquina inferior derecha
             // lo dibujo en this, es decir en el form que es lo que el metodo espera en la implementacion de cada objeto
             // me lo llevo a una coleccion y asigno la coleccion a la lista visual
-            
+
             if (figura != null && estado_canvas == Estados.Dibujando)
             {
-            
+
                 nuevafigura.colorContorno = ((frmExplorer)Application.OpenForms["frmExplorer"]).colorline.Color;
                 nuevafigura.punto2 = new Punto(e.X, e.Y);
                 nuevafigura.Dibujar(canvas);
@@ -184,7 +199,7 @@ namespace PocGDP
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
                     ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.SelectedIndex = ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.Items.Count - 1;
                 }
-                
+
             }
 
             if (figuraSeleccionada != null && estado_canvas == Estados.Escalando)
@@ -198,7 +213,7 @@ namespace PocGDP
                         item.punto2 = new Punto(e.X, e.Y);
                         if (e.Button == MouseButtons.Left)
                         {
-                            
+
                             item.Dibujar(canvas);
                             ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = null;
                             ((frmExplorer)Application.OpenForms["frmExplorer"]).listadeobjetos.DataSource = this.listafigura;
@@ -207,7 +222,7 @@ namespace PocGDP
                         }
                     }
                 }
-                 
+
             }
             if (figuraSeleccionada != null && estado_canvas == Estados.Moviendo)
             {
@@ -234,10 +249,10 @@ namespace PocGDP
 
         }
 
-        
+
         private void frmCanvas_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e)
@@ -251,7 +266,7 @@ namespace PocGDP
             {
                 Graphics grp = canvas.CreateGraphics();
                 grp.Clear(SystemColors.Control);
-            
+
                 selectedItem.Dibujar(canvas);
                 grp.Dispose();
             }

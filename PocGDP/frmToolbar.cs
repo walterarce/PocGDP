@@ -292,18 +292,6 @@ namespace PocGDP
             }
         }
 
-        private void btnBrush_Click(object sender, EventArgs e)
-        {
-            if (((frmCanvas)Application.OpenForms["frmCanvas"]) != null)
-            {
-                var ManoAlzada = new Painter();
-                foreach (frmCanvas frm in this.OwnedForms)
-                {
-                    frm.figura = ManoAlzada;
-                }
-            ((frmCanvas)Application.OpenForms["frmCanvas"]).estado_canvas = Estados.Dibujando;
-            }
-        }
     }
     public class ToolbarEstado
      {
