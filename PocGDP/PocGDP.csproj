@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Painter.cs" />
     <Compile Include="Circulo.cs" />
     <Compile Include="Cuadrado.cs" />
     <Compile Include="Estados.cs" />
@@ -261,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\send-to-front-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-palette1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

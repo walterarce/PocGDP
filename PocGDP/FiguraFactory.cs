@@ -15,10 +15,13 @@ namespace PocGDP
                     return new Circulo();
                 case "Linea":
                     return new Linea();
+                case "Painter":
+                    return new Painter();
                 case "StringPic":
                     return new StringPic();
                 case "Imagen":
                     return new Imagen();
+               
                 default:
                     return new Cuadrado();
             }

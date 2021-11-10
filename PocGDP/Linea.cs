@@ -17,14 +17,8 @@ namespace PocGDP
             this.punto1 = punto1;
             this.punto2 = punto2;
         }
+
         List<Point> puntos = new List<Point>();
-
-        //setter
-        public void AgregarPunto(Point pnt)
-        {
-            puntos.Add(pnt);
-        }
-
         public override void Dibujar(PictureBox f1)
         {
             Graphics grp = f1.CreateGraphics();
@@ -37,11 +31,11 @@ namespace PocGDP
             grp.DrawLine(new Pen(colorContorno, anchoLapicera), this.punto1.X, this.punto1.Y, this.punto2.X, this.punto2.Y);
             grp.Dispose();
         }
-
-        public Point[] ObtenerPuntos()
+        public void AgregarPunto(Point pnt)
         {
-            return puntos.ToArray();
+            puntos.Add(pnt);
         }
+
         public override string ToString()
         {
             return this.GetType().Name;
